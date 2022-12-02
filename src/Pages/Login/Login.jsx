@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
@@ -13,109 +11,88 @@ import {
   InputAdornment,
   IconButton,
 } from '@mui/material';
-import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import axios from 'axios';
-// import GoogleLogin from '../../Components/GoogleLogin/GoogleLogin';
-// import Success from '../../Components/Success/Success';
-// import PopUp from '../../Components/PopUp/PopUp';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { BsEyeFill, BsEyeSlashFill, BsGoogle } from 'react-icons/bs';
+
+import { login } from '../../redux/actions/authActions';
+import LogSuccess from '../../Components/LogSuccess/LogSuccess';
 
 export default function Login() {
+  const dispatch = useDispatch();
+
+  const { token } = useSelector((state) => state.auth);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState(null);
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    const getToken = localStorage.getItem('token');
-    setToken(getToken);
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
+    if (!email) {
+      toast.error('Email is required');
+      return;
+    }
+    if (!password) {
+      toast.error('Password is required');
+      return;
+    }
 
-    if (email === '') {
-      setMessage('Email is required');
-      setError(true);
-      return;
-    }
-    if (password === '') {
-      setMessage('Password is required');
-      setError(true);
-      return;
-    }
-    if (email !== '' && password !== '') {
+    if (email && password) {
       const data = {
         email,
         password,
       };
-      try {
-        const result = await axios.post(
-          `${process.env.REACT_APP_AUTH_API}/api/v1/auth/login`,
-          data
-        );
-        console.log(result);
-        if (result.data.token) {
-          localStorage.setItem('token', result.data.token);
-          setToken(result.data.token);
-        }
-      } catch (error) {
-        setMessage(error.response.data.message);
-        setError(true);
-      }
+      dispatch(login(data));
     }
   };
 
   return (
-    <Container sx={{ paddingTop: 15 }}>
-      {/* {error ? <PopUp message={message} /> : ''} */}
+    <Container sx={{ paddingTop: 15 }} maxWidth="md">
       {token ? (
-        // <Success setToken={setToken} label="Login" />
-        <h2>yay</h2>
+        <LogSuccess
+          navi="/"
+          navLabel="Home"
+          h1="You are Logged in!"
+          h4="Get Ready To fly with us"
+        />
       ) : (
         <Grid container justifyContent="center">
           <Grid
             item
-            sm={4}
+            md={4}
+            sm={12}
             sx={{
+              mx: 5,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
             }}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/4221/4221419.png"
+              src="https://cdn-icons-png.flaticon.com/512/1254/1254750.png?w=740&t=st=1669340140~exp=1669340740~hmac=aa985c9762b2e2204ab325aaed95a79d25ac83e1209804973c4392f606cc24d3"
               alt="movie"
               style={{ maxWidth: '300px' }}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={6} sm={12}>
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
               }}>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1243/1243277.png"
-                alt="movie"
-                style={{ maxWidth: '40px' }}
-              />
-              <Typography component="h1" variant="h5">
-                Login
+              <Typography component="h1" variant="h4">
+                Welcome Back!
               </Typography>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}>
+              <Typography component="h5">
+                Are you ready to fly with us?
+              </Typography>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <TextField
-                  margin="normal"
+                  margin="dense"
                   required
                   fullWidth
-                  id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
@@ -124,13 +101,12 @@ export default function Login() {
                   autoFocus
                 />
                 <TextField
-                  margin="normal"
+                  margin="dense"
                   required
                   fullWidth
                   name="password"
                   label="Password"
                   type={showPassword ? 'text' : 'password'}
-                  id="password"
                   value={password}
                   InputProps={{
                     endAdornment: (
@@ -146,24 +122,29 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
+                <Link href="/forgot-pass" variant="body2">
+                  {'Forgot Password'}
+                </Link>
                 <Button
                   disabled={!email || !password}
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={() => {
-                    setError(false);
-                  }}>
+                  sx={{ mt: 3, mb: 2 }}>
                   Login
                 </Button>
 
                 <Divider>or continue with</Divider>
                 {/* <GoogleLogin setToken={setToken} /> */}
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  // onClick={googleLog}
+                >
+                  <BsGoogle style={{ marginRight: '10px' }} />
+                  Google
+                </Button>
 
                 <Grid container justifyContent="flex-end">
                   <Grid item>
