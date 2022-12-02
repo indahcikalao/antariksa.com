@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+}
+
+.container{
+  overflow: hidden;
+  height: 600px;
+}
+
+.hero-text {
+  position: absolute;
+  top: 27%;
+  left: 24%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-text h1 {
+  color: #fff;
+  font-size: 48px;
+}
+
+.chooseticket {
+  position: absolute;
+  top: 48%;
+  right: -37%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 1rem;
+  background: #252C35;
+  border-radius: 10px;
+}
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  background: #fff;
+}
+
+.jarakbox {
+  margin-right: 8px;
+}
+
+.radio {
+  color: #fff;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.grid-item {
+  padding: 20px;
+  text-align: center;
+  color: #252C35;
+}
+
+.grid-item p {
+  font-size: 14px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.searchButton {
+  background-color: #F9FAD3 ;
+  color: #252C35;
+  font-size: 17px;
+  border-radius: 10px;
+  width: 180px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
+.searchButton:hover {
+  background-color: #FBFCB8 ;
+  color: #252C35;
+}
