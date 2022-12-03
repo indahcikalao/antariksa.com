@@ -1,0 +1,15 @@
+.footer {
+  padding: 2rem;
+  background: #252C35 ;
+  color: #fff;
+}
+
+.top {
+  text-align: center;
+}
+
+.medsos {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
