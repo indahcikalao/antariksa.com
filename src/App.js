@@ -13,7 +13,6 @@ import BuyerProfile from './Pages/BuyerProfile/BuyerProfile';
 import AdminDash from './Pages/AdminDash/AdminDash';
 import ForgotPw from './Pages/ForgotPw/ForgotPw';
 import NewPw from './Pages/ForgotPw/NewPw';
-import AdminLogin from './Pages/AdminLogin/AdminLogin';
 import store from './redux/store';
 
 export default function App() {
@@ -31,15 +30,10 @@ export default function App() {
 
         <Route path="/buyer-profile" element={<BuyerProfile />} />
 
-        <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDash />} />
       </Routes>
 
-      <ToastContainer
-        theme="colored"
-        position="bottom-right"
-        autoClose={3000}
-      />
+      <ToastContainer position="bottom-right" autoClose={3000} />
       <Footer />
     </Provider>
   );
