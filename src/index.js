@@ -12,6 +12,16 @@ const theme = createTheme({
       textTransform: 'none',
     },
   },
+  shape: {
+    borderRadius: '13px',
+    border: '2px',
+  },
+  palette: {
+    primary: {
+      main: '#252C35',
+      dark: '#4d6c7a',
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

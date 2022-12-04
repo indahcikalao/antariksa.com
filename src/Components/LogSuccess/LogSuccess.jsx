@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container } from '@mui/material';
 import { FaPlane } from 'react-icons/fa';
-
 import './LogSuccess.scss';
 
 export default function LogSuccess({ navi, navLabel, h1, h4 }) {
@@ -25,8 +23,9 @@ export default function LogSuccess({ navi, navLabel, h1, h4 }) {
   }, [timeLeft, navigate, navi]);
 
   return (
-    <Container sx={{ pt: 5, pb: 20 }} maxWidth="md">
-      <div style={{ textAlign: 'center' }}>
+    <div>
+      <img className="plane-img2" src="./img/plane3-cropped.jpg" alt="plane" />
+      <div style={{ textAlign: 'center', padding: '30px 0' }}>
         <h1>{h1}</h1>
         <p>
           {h4} · · · <FaPlane />
@@ -35,6 +34,6 @@ export default function LogSuccess({ navi, navLabel, h1, h4 }) {
           Redirecting to {navLabel} in {timeLeft} ...
         </p>
       </div>
-    </Container>
+    </div>
   );
 }
