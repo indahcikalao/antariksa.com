@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { SpeedDial, SpeedDialAction } from '@mui/material';
 import { FaPaperPlane, FaUserAlt, FaPlane } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
-import { BiBell } from 'react-icons/bi';
 import { BsMenuButtonWideFill } from 'react-icons/bs';
 import { logout } from '../../redux/actions/authActions';
 
@@ -19,7 +18,6 @@ export default function BuyerSpeedDials() {
       icon: withLink('/buyer-history', <FaPaperPlane />),
       name: 'Flight History',
     },
-    { icon: withLink('/buyer-notification', <BiBell />), name: 'Notification' },
     { icon: <FiLogOut onClick={dispatch(logout)} />, name: 'Log Out' },
   ];
 
