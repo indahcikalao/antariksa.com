@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button"
-import { TextField, 
+import { TextField, Select,
   MenuItem,
-  FormControl,
   InputLabel,
-  Select } 
-  from "@mui/material";
+  FormControl, } from "@mui/material";
 import "./BuyerProfile.css";
+import { useDispatch, useSelector } from "react-redux"
 
-  function BuyerProfile() {
-    const [gender, setGender] = useState('');
-  
+function BuyerProfile() {
+  const [gender, setGender] = useState('');
   return (
     <div className="app">
       <div className="container">

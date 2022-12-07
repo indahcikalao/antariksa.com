@@ -21,7 +21,6 @@ import Transaction from './Pages/Transaction/Transaction';
 import Payment from './Pages/Payment/Payment';
 import History from './Pages/History/History';
 import AdminLogin from './Pages/AdminLogin/AdminLogin'
-
 export default function App() {
   return (
     <Provider store={store}>

@@ -1,72 +1,72 @@
 .searchTicket {
-    background: url(./pesawat.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 120vh;
-  }
-  
-  .searchTicketContainer {
-    padding: 120px 72px;
+  background: url(./pesawat.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 120vh;
+}
 
-  }
-  
-  .searchTicketCard {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: rgba(255,255,255, 0.9);
-    min-height: 100px;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-  }
+.searchTicketContainer {
+  padding: 120px 72px;
 
-  @media screen and (max-width: 425px) {
-    .formLeft {
-      grid-template-columns: repeat(1, 1fr);
-      margin-top: 100px;
-    }
-  }
-  
+}
+
+.searchTicketCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgba(255,255,255, 0.9);
+  min-height: 100px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 425px) {
   .formLeft {
-    flex: 2;
-    padding: 30px 35px;
-    justify-content: center;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 100px;
   }
-  
-  .searchTicketHeading {
-    font-size: 20px;
-  }
-  
-  /* .cardRight {
-    flex: 3.5;
-    background-image: url('../../public/images/searchBooking.jpg');
-    background-position: center;
-    background-size: cover;
-    overflow: hidden;
-    position: static;
-  } */
-  
-  
-  .searchTicketButton {
-    padding: 12px 32px;
-    border-radius: 10px;
-    background-image: linear-gradient(to right, #FAAB18, #FFDD00);
-    font-weight: 400;
-    border: 0px;
-    cursor: pointer;
-  }
-  
-  .result {
-    margin-top: 35px;
-    padding: 30px 35px;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-  
-  .searchError {
-    color: red;
-    font-size: 16px;
-    margin-top: 20px;
-  }
+}
+
+.formLeft {
+  flex: 2;
+  padding: 30px 35px;
+  justify-content: center;
+}
+
+.searchTicketHeading {
+  font-size: 20px;
+}
+
+/* .cardRight {
+  flex: 3.5;
+  background-image: url('../../public/images/searchBooking.jpg');
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  position: static;
+} */
+
+
+.searchTicketButton {
+  padding: 12px 32px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #FAAB18, #FFDD00);
+  font-weight: 400;
+  border: 0px;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 35px;
+  padding: 30px 35px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.searchError {
+  color: red;
+  font-size: 16px;
+  margin-top: 20px;
+}
