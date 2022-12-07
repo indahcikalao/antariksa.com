@@ -4,29 +4,28 @@
 
 .container{
   overflow: hidden;
-  height: 600px;
+  margin-top: -70px;
+  height: 400px;
 }
 
 .hero-text {
   position: absolute;
-  top: 27%;
-  left: 24%;
-  transform: translate(-50%, -50%);
+  transform: translate(-47%, -60%);
 }
 
 .hero-text h1 {
   color: #fff;
-  font-size: 48px;
+  font-size: 47px;
+  -webkit-text-stroke: 1px #252C35;
 }
 
 .chooseticket {
   position: absolute;
-  top: 48%;
-  right: -37%;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, 50%);
   padding: 2rem 1rem;
-  background: #252C35;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
 }
 
 .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
@@ -38,7 +37,7 @@
 }
 
 .radio {
-  color: #fff;
+  color: #252C35;
   margin-top: -20px;
   margin-bottom: 10px;
 }
@@ -63,19 +62,91 @@
   padding-right: 50px;
 }
 
-.searchButton {
-  background-color: #F9FAD3 ;
-  color: #252C35;
-  font-size: 17px;
-  border-radius: 10px;
-  width: 180px;
-  height: 50px;
-  border: none;
-  cursor: pointer;
-  float: right;
+.smallLabel {
+  text-align: right;
+  font-size: 12px;
+  margin-right: 16px;
+  color: #898989;
+  margin-top: -20px;
 }
 
-.searchButton:hover {
-  background-color: #FBFCB8 ;
-  color: #252C35;
+.incredecre {
+  display : 'inline-block';
+  float : right;
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 425px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 100px;
+  }
+
+  .hero-text h1 {
+    display: none;
+  }
+  
+  .container{
+    margin-top: 0px;
+  }
+
+  video {
+    /* width: 200%;
+    height: 100%;
+    object-fit: fill; */
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    object-fit: cover;
+  }
+
+  .chooseticket {
+    display: grid;
+    grid-template-columns: auto;
+    transform: translate(0%, 15%);
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .jarakbox, .incredecre {
+    margin-top: 10px;
+  }
+
+  .departreturn {
+    margin-top: 13px;
+  }
+
+  .grid-item img {
+    width: 200px;
+  }
+
+  .grid-item h2 {
+    font-size: 15px;
+  }
+
+  .grid-item p {
+    font-size: 12px;
+  }
+
+  .smallLabel {
+    transform: translate(-22%, 1300%);
+  }
+
+  .incredecre {
+    transform: translate(20%, 35%);
+  }
+
+  .searchflight {
+    margin-top: -10px;
+    margin-left: 14px;
+    margin-bottom: -15px;
+  }
+
+  .radio {
+    margin-bottom: -5px;
+  }
 }
