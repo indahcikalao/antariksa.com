@@ -15,6 +15,7 @@ function NewPw() {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   return (
     <div
@@ -67,15 +68,15 @@ function NewPw() {
                 required
                 fullWidth
                 label="Confirm Password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword2 ? 'text' : 'password'}
                 value={passwordConfirm}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        onClick={() => setShowPassword(!showPassword)}>
-                        {!showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                        onClick={() => setShowPassword2(!showPassword2)}>
+                        {!showPassword2 ? <BsEyeFill /> : <BsEyeSlashFill />}
                       </IconButton>
                     </InputAdornment>
                   ),

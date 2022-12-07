@@ -14,10 +14,15 @@ import AdminDash from './Pages/AdminDash/AdminDash';
 import ForgotPw from './Pages/ForgotPw/ForgotPw';
 import NewPw from './Pages/ForgotPw/NewPw';
 import store from './redux/store';
+// import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
+import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
+import NotFound from './Pages/NotFound/NotFound';
 
 export default function App() {
   return (
     <Provider store={store}>
+      {/* <AdminSpeedDials /> */}
+      <BuyerSpeedDials />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -31,6 +36,8 @@ export default function App() {
         <Route path="/buyer-profile" element={<BuyerProfile />} />
 
         <Route path="/admin-dashboard" element={<AdminDash />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <ToastContainer position="bottom-right" autoClose={3000} />
