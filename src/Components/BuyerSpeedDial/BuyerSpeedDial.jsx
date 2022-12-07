@@ -15,7 +15,7 @@ export default function BuyerSpeedDials() {
     { icon: withLink('/buyer-profile', <FaUserAlt />), name: 'My Profile' },
     { icon: withLink('/', <FaPlane />), name: 'Book a Flight' },
     {
-      icon: withLink('/buyer-history', <FaPaperPlane />),
+      icon: withLink('/history', <FaPaperPlane />),
       name: 'Flight History',
     },
     { icon: <FiLogOut onClick={dispatch(logout)} />, name: 'Log Out' },

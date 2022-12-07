@@ -17,6 +17,9 @@ import store from './redux/store';
 // import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
 import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
 import NotFound from './Pages/NotFound/NotFound';
+import Transaction from './Pages/Transaction/Transaction';
+import Payment from './Pages/Payment/Payment';
+import History from './Pages/History/History';
 
 export default function App() {
   return (
@@ -34,6 +37,9 @@ export default function App() {
         <Route path="/search-result" element={<SearchRes />} />
 
         <Route path="/buyer-profile" element={<BuyerProfile />} />
+        <Route path="/transaction" element={<Transaction />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/history" element={<History />} />
 
         <Route path="/admin-dashboard" element={<AdminDash />} />
 
