@@ -7,7 +7,8 @@
   }
   
   .searchTicketContainer {
-    padding: 70px 72px;
+    padding: 120px 72px;
+
   }
   
   .searchTicketCard {
@@ -15,15 +16,23 @@
     flex-direction: row;
     flex-wrap: wrap;
     background-color: rgba(255,255,255, 0.9);
-    min-height: 100vh;
+    min-height: 100px;
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
+  }
+
+  @media screen and (max-width: 425px) {
+    .formLeft {
+      grid-template-columns: repeat(1, 1fr);
+      margin-top: 100px;
+    }
   }
   
   .formLeft {
     flex: 2;
     padding: 30px 35px;
+    justify-content: center;
   }
   
   .searchTicketHeading {

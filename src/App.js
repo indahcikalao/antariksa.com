@@ -13,12 +13,20 @@ import BuyerProfile from './Pages/BuyerProfile/BuyerProfile';
 import AdminDash from './Pages/AdminDash/AdminDash';
 import ForgotPw from './Pages/ForgotPw/ForgotPw';
 import NewPw from './Pages/ForgotPw/NewPw';
-import AdminLogin from './Pages/AdminLogin/AdminLogin';
 import store from './redux/store';
+// import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
+import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
+import NotFound from './Pages/NotFound/NotFound';
+import Transaction from './Pages/Transaction/Transaction';
+import Payment from './Pages/Payment/Payment';
+import History from './Pages/History/History';
+import AdminLogin from './Pages/AdminLogin/AdminLogin'
 
 export default function App() {
   return (
     <Provider store={store}>
+      {/* <AdminSpeedDials /> */}
+      <BuyerSpeedDials />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,16 +38,17 @@ export default function App() {
         <Route path="/search-result" element={<SearchRes />} />
 
         <Route path="/buyer-profile" element={<BuyerProfile />} />
+        <Route path="/transaction" element={<Transaction />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/history" element={<History />} />
 
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDash />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <ToastContainer
-        theme="colored"
-        position="bottom-right"
-        autoClose={3000}
-      />
+      <ToastContainer position="bottom-right" autoClose={3000} />
       <Footer />
     </Provider>
   );

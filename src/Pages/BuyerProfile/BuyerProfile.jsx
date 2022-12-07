@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button"
-import { TextField, MenuItem } from "@mui/material";
+import { TextField, 
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select } 
+  from "@mui/material";
 import "./BuyerProfile.css";
-import { useDispatch, useSelector } from "react-redux"
 
-function BuyerProfile() {
+  function BuyerProfile() {
+    const [gender, setGender] = useState('');
+  
   return (
     <div className="app">
       <div className="container">
@@ -14,7 +20,8 @@ function BuyerProfile() {
         {/* <div className="form-group"> */}
           {/* <label htmlFor="">Name</label> */}
           {/* <input type="text" className="form-control"placeholder="Search..." /> */}
-          
+          <br></br>
+          <br></br>
           <TextField fullWidth label="Full Name" id="fullWidth" />
           <br></br>
           <br></br>
@@ -24,11 +31,24 @@ function BuyerProfile() {
           <TextField fullWidth label="Phone Number" id="fullWidth" /> 
           <br></br>
           <br></br>
-          <h5>Gender</h5>
-          <TextField id="select" value="10" select>
+          {/* <TextField id="select" value="10" select>
           <MenuItem value="10">Male</MenuItem>
           <MenuItem value="20">Female</MenuItem>
-          </TextField>
+          </TextField> */}
+          <FormControl sx={{ width: 200 }} margin="dense">
+                      <InputLabel id="gender">Gender</InputLabel>
+                      <Select
+                        labelId="gender"
+                        value={gender}
+                        label="Gender"
+                        onChange={(e) => setGender(e.target.value)}>
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
+                      </Select>
+                    </FormControl>
           <br></br>
           <br></br>
           <Button type="submit" variant="contained">

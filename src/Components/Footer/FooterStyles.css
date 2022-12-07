@@ -11,5 +11,10 @@
 .medsos {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 10px;
+}
+
+.medsos a {
+  margin-left: 5px;
+  margin-right: 5px;
 }

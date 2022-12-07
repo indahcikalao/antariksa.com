@@ -1,0 +1,32 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: #2f465b;
+}
+
+.adm-hero {
+  color: #ffffff;
+  letter-spacing: 5px;
+}
+
+.box-info {
+  padding: 30px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 13px;
+  background-color: #ffffff;
+  z-index: 999;
+  width: 300px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adm-hero-sect2 {
+  background-color: #faf4f4;
+  color: #252c35;
+}
