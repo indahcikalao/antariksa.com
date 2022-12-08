@@ -14,19 +14,18 @@
   .payment {
     color: white;
     font-weight: 500;
-    background-color: #33b338;
+    background-color: #25aa29;
     padding: 3px 20px;
     width: fit-content;
     border-radius: 13px;
   }
   .payment.not {
-    background-color: #ba3a2e;
+    background-color: #bc0707;
   }
 }
 
 @media screen and (max-width: 600px) {
   .grid-i-his-card {
-    // display: flex;
     justify-content: center;
   }
 }
