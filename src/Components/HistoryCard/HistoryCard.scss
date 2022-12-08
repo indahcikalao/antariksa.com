@@ -1,0 +1,32 @@
+.his-grid {
+  color: inherit;
+  span {
+    font-weight: 700;
+    padding-right: 5px;
+  }
+
+  .grid-i-his-card {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  .payment {
+    color: white;
+    font-weight: 500;
+    background-color: #33b338;
+    padding: 3px 20px;
+    width: fit-content;
+    border-radius: 13px;
+  }
+  .payment.not {
+    background-color: #ba3a2e;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid-i-his-card {
+    // display: flex;
+    justify-content: center;
+  }
+}
