@@ -12,11 +12,12 @@
   }
 
   .payment {
+    text-align: center;
     color: white;
     font-weight: 500;
     background-color: #25aa29;
-    padding: 3px 20px;
-    width: fit-content;
+    padding: 3px 15px;
+    min-width: 80px;
     border-radius: 13px;
   }
   .payment.not {
