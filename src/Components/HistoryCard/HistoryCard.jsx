@@ -16,7 +16,8 @@ export default function HistoryCard() {
             <span>Booking id</span> 12345678
           </Grid>
           <Grid item sm={3} xs={12} className="grid-i-his-card">
-            {/* <Box className="payment">Paid</Box> */}
+
+            <Box className="payment">Paid</Box>
             <Box className="payment not">Not Paid</Box>
           </Grid>
         </Grid>
