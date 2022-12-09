@@ -38,13 +38,26 @@ const datetheme = createTheme({
 
 function Home() {
   const [value, setValue] = React.useState(dayjs('2022-12-02T21:11:54'));
-  const [value1] = React.useState(dayjs('2023-01-05T21:11:54'));
+  const [value1, setValue1] = React.useState(dayjs('2023-01-05T21:11:54'));
+  const [disabled, setDisabled] = useState(true);
 
-  const handleChange = (newValue) => {
+  const handleChangeDepart = (newValue) => {
     setValue(newValue);
   };
 
+  const handleChangeReturn = (newValue1) => {
+    setValue1(newValue1);
+  };
+
   const [counter, setCounter] = useState(0);
+
+  const disabledButton = () => {
+    setDisabled(true)
+  }
+
+  const normalButton = () => {
+    setDisabled(false)
+  }
 
   return (
     <div>
@@ -64,8 +77,8 @@ function Home() {
                   name="row-radio-buttons-group"
                   defaultValue="Return"
                 >
-                  <FormControlLabel color="primary" value="Return" control={<Radio />} label="One Way" />
-                  <FormControlLabel color="primary" value="One Way" control={<Radio />} label="Return" />
+                  <FormControlLabel color="primary" value="Return" control={<Radio />} label="One Way" onClick={disabledButton}/>
+                  <FormControlLabel color="primary" value="One Way" control={<Radio />} label="Return" onClick={normalButton}/>
                 </RadioGroup>
               </FormControl>
             </ThemeProvider>
@@ -92,25 +105,26 @@ function Home() {
             </StyledEngineProvider>
 
             <ThemeProvider theme={datetheme}>
-              <Box className='departreturn' sx={{display: 'inline-block', marginRight: 1, width: 200}}>
+              <Box className='departreturn' sx={{display: 'inline-block', marginRight: 1}}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label="Depart"
                     inputFormat="MM/DD/YYYY"
                     value={value}
-                    onChange={handleChange}
+                    onChange={handleChangeDepart}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>
-              <Box className='departreturn' sx={{display: 'inline-block', marginRight: 1, width: 200}}>
+              <Box className='departreturn' sx={{display: 'inline-block', marginRight: 1}}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label="Return"
                     inputFormat="MM/DD/YYYY"
                     value={value1}
-                    onChange={handleChange}
+                    onChange={handleChangeReturn}
                     renderInput={(params) => <TextField {...params} />}
+                    disabled={disabled}
                   />
                 </LocalizationProvider>
               </Box>
