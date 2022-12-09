@@ -75,8 +75,61 @@
   float : right;
 }
 
-@media screen and (max-width: 1024px) {
+.departreturn {
+  width: 200px;
 }
+
+@media screen and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 170px;
+  }
+
+  video {
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    object-fit: cover;
+  }
+
+  .hero-text {
+    position: none;
+    transform: translate(0%, -50%);
+  }
+
+  .hero-text h1 {
+    font-size: 38px;
+    margin-top: -85px;
+  }
+
+  .chooseticket {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: -50px;
+  }
+
+  .jarakbox, .departreturn {
+    margin-top: 10px;
+    width: 150px;
+  }
+
+  .incredecre {
+    float: none;
+    display: inline-block;
+    transform: translate(0%,25%);
+  }
+
+  .smallLabel {
+    display: none;
+  }
+
+  .departreturn {
+    width: 100px;
+  }
+}
+
 
 @media screen and (max-width: 425px) {
   .grid-container {
@@ -107,17 +160,19 @@
   .chooseticket {
     display: grid;
     grid-template-columns: auto;
-    transform: translate(0%, 15%);
+    transform: translate(0%, 20%);
     padding-left: 30px;
     padding-right: 30px;
   }
 
   .jarakbox, .incredecre {
     margin-top: 10px;
+    width: 200px;
   }
 
   .departreturn {
     margin-top: 13px;
+    width: 200px;
   }
 
   .grid-item img {
@@ -133,7 +188,8 @@
   }
 
   .smallLabel {
-    transform: translate(-22%, 1300%);
+    display: block;
+    transform: translate(-22%, 1280%);
   }
 
   .incredecre {
