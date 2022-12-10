@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   width: 95%;
   height: 80px;
   border-radius: 13px;
@@ -13,11 +13,11 @@
   top: 20px;
   left: 50%;
   transform: translate(-50%);
-  z-index: 99;
+  z-index: 9999;
 }
 
 .navbarLogo {
-  color: #252C35;
+  color: #252c35;
   font-size: 2rem;
   cursor: pointer;
   text-decoration: none;
@@ -33,7 +33,7 @@
 .nav-links-login {
   text-decoration: none;
   margin-right: 20px;
-  color: #252C35;
+  color: #252c35;
   font-size: 1.2rem;
   padding: 0.7rem 1rem;
   white-space: nowrap;
@@ -48,7 +48,7 @@
   font-size: 1.2rem;
   padding: 0.7rem 1rem;
   white-space: nowrap;
-  background-color: #252C35;
+  background-color: #252c35;
   border-radius: 13px;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .notif {
-  color: #252C35;
+  color: #252c35;
   margin-top: 10px;
   padding-left: 10px;
   cursor: pointer;
@@ -87,7 +87,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
     border-radius: 13px;
     width: 100%;
     height: auto;
@@ -101,10 +101,11 @@
   }
 
   .navbarMenu.active {
-    left : 0;
+    left: 0;
   }
 
-  .nav-links-login, .nav-links-regis {
+  .nav-links-login,
+  .nav-links-regis {
     width: 100%;
     padding: 1rem 20px;
     display: block;
@@ -114,7 +115,8 @@
     padding-left: 0;
   }
 
-  .nav-links-login, .nav-links-login:hover {
+  .nav-links-login,
+  .nav-links-login:hover {
     padding: 10px 0 10px 0px;
     margin-left: 0;
   }
@@ -126,5 +128,4 @@
   .menu-icons {
     display: block;
   }
-
 }
