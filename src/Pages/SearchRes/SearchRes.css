@@ -20,6 +20,7 @@
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
+  justify-content: center;
 }
 
 @media screen and (max-width: 425px) {
