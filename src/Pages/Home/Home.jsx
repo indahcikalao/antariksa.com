@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomeStyles.css';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -16,8 +16,8 @@ import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
-const tesdata = ['Option 1', 'Option 2'];
+import { useDispatch, useSelector } from "react-redux";
+import { getListAirport } from '../../redux/actions/listairportAction';
 
 const theme = createTheme({
   palette: {
@@ -34,6 +34,16 @@ const datetheme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          width: 300,
+          height: 495,
+          transform: 'translate(0%, 10%)',
+          
+        }
+      }
+    }
   },
 });
 
@@ -41,6 +51,8 @@ function Home() {
   const [value, setValue] = React.useState(dayjs('2022-12-02T21:11:54'));
   const [value1, setValue1] = React.useState(dayjs('2023-01-05T21:11:54'));
   const [disabled, setDisabled] = useState(true);
+  const dispatch = useDispatch();
+  const { listAirport } = useSelector((state) => state.listAirport);
 
   const handleChangeDepart = (newValue) => {
     setValue(newValue);
@@ -59,6 +71,10 @@ function Home() {
   const normalButton = () => {
     setDisabled(false);
   };
+
+  useEffect(() => {
+    dispatch(getListAirport());
+  }, [dispatch]);
 
   return (
     <div>
@@ -106,17 +122,29 @@ function Home() {
           <ThemeProvider theme={theme}>
             <StyledEngineProvider injectFirst>
               <Autocomplete
-                disablePortal
                 id="combo-box-demo"
-                options={tesdata}
+                options= {
+                  listAirport?.map((list) =>
+                    list.name + " (" + list.code + ") - " + list.region
+                  )
+                }
+                componentsProps={{
+                  paper: {}
+                }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="From" />}
                 className="jarakbox"
               />
               <Autocomplete
-                disablePortal
                 id="combo-box-demo"
-                options={tesdata}
+                options= {
+                  listAirport?.map((list) =>
+                    list.name + " (" + list.code + ") - " + list.region
+                  )
+                }
+                componentsProps={{
+                  paper: {}
+                }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="To" />}
                 className="jarakbox"
