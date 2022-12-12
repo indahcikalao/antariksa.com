@@ -20,7 +20,7 @@ import NotFound from './Pages/NotFound/NotFound';
 import Transaction from './Pages/Transaction/Transaction';
 import Payment from './Pages/Payment/Payment';
 import History from './Pages/History/History';
-
+import AdminLogin from './Pages/AdminLogin/AdminLogin'
 export default function App() {
   return (
     <Provider store={store}>
@@ -41,6 +41,7 @@ export default function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/history" element={<History />} />
 
+        <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDash />} />
 
         <Route path="*" element={<NotFound />} />
