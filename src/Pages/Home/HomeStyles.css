@@ -77,6 +77,12 @@
 
 .departreturn {
   width: 200px;
+  
+}
+
+.MuiPaper-root {
+  width: 700px;
+  height: 298px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -127,6 +133,11 @@
 
   .departreturn {
     width: 100px;
+  }
+
+  .MuiPaper-root {
+    width: 300px;
+    height: 320px;
   }
 }
 
@@ -204,5 +215,10 @@
 
   .radio {
     margin-bottom: -5px;
+  }
+
+  .MuiPaper-root {
+    width: 200px;
+    height: 320px;
   }
 }
