@@ -80,9 +80,10 @@ export default function TransactionPassanger({ i }) {
             onChange={(e) => console.log(e.target.value)}
             // onChange={(e) => setName(e.target.value)}
           />
-
           <Box sx={idType === 'Passport' ? { mt: 2 } : { display: 'none' }}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider
+              dateAdapter={AdapterDayjs}
+              sx={{ borderRadius: '13px' }}>
               <MobileDatePicker
                 disabled={idType !== 'Passport'}
                 label="Identitiy Expire Date"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { SpeedDial, SpeedDialAction } from '@mui/material';
 import { FaPaperPlane, FaUserAlt, FaPlane } from 'react-icons/fa';
@@ -9,6 +9,7 @@ import { logout } from '../../redux/actions/authActions';
 
 export default function BuyerSpeedDials() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const withLink = (to, icon) => <Link to={to}>{icon}</Link>;
 
   const actions = [
@@ -18,7 +19,17 @@ export default function BuyerSpeedDials() {
       icon: withLink('/history', <FaPaperPlane />),
       name: 'Flight History',
     },
-    { icon: <FiLogOut onClick={dispatch(logout)} />, name: 'Log Out' },
+    {
+      icon: (
+        <FiLogOut
+          onClick={() => {
+            dispatch(logout());
+            navigate('/');
+          }}
+        />
+      ),
+      name: 'Log Out',
+    },
   ];
 
   return (
