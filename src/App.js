@@ -24,7 +24,6 @@ import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
 import Protected from './Components/Protected/Protected';
 import { whoami } from './redux/actions/authActions';
 
-
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -62,7 +61,7 @@ export default function App() {
         <Route
           path="/buyer-profile"
           element={
-            <Protected roles={['Buyer']}>
+            <Protected roles={['Buyer', 'Admin']}>
               <BuyerProfile />
             </Protected>
           }
@@ -70,7 +69,7 @@ export default function App() {
         <Route
           path="/transaction"
           element={
-            <Protected roles={['Buyer']}>
+            <Protected roles={['Buyer', 'Admin']}>
               <Transaction />
             </Protected>
           }
@@ -78,7 +77,7 @@ export default function App() {
         <Route
           path="/payment"
           element={
-            <Protected roles={['Buyer']}>
+            <Protected roles={['Buyer', 'Admin']}>
               <Payment />
             </Protected>
           }
@@ -86,7 +85,7 @@ export default function App() {
         <Route
           path="/history"
           element={
-            <Protected roles={['Buyer']}>
+            <Protected roles={['Buyer', 'Admin']}>
               <History />
             </Protected>
           }
@@ -108,7 +107,6 @@ export default function App() {
             </Protected>
           }
         />
-
 
         <Route path="*" element={<NotFound />} />
       </Routes>
