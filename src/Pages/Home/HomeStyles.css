@@ -2,7 +2,7 @@
   margin: 0;
 }
 
-.container{
+.container {
   overflow: hidden;
   margin-top: -70px;
   height: 400px;
@@ -16,7 +16,7 @@
 .hero-text h1 {
   color: #fff;
   font-size: 47px;
-  -webkit-text-stroke: 1px #252C35;
+  -webkit-text-stroke: 1px #252c35;
 }
 
 .chooseticket {
@@ -25,10 +25,10 @@
   padding: 2rem 1rem;
   background: #fff;
   border-radius: 13px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+.MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
   background: #fff;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .radio {
-  color: #252C35;
+  color: #252c35;
   margin-top: -20px;
   margin-bottom: 10px;
 }
@@ -53,7 +53,7 @@
 .grid-item {
   padding: 20px;
   text-align: center;
-  color: #252C35;
+  color: #252c35;
 }
 
 .grid-item p {
@@ -71,19 +71,18 @@
 }
 
 .incredecre {
-  display : 'inline-block';
-  float : right;
+  display: 'inline-block';
+  float: right;
 }
 
 .departreturn {
   width: 200px;
-  
 }
 
-.MuiPaper-root {
+/* .MuiPaper-root {
   width: 700px;
   height: 298px;
-}
+} */
 
 @media screen and (max-width: 1024px) {
   .grid-container {
@@ -116,7 +115,8 @@
     margin-top: -50px;
   }
 
-  .jarakbox, .departreturn {
+  .jarakbox,
+  .departreturn {
     margin-top: 10px;
     width: 150px;
   }
@@ -124,7 +124,7 @@
   .incredecre {
     float: none;
     display: inline-block;
-    transform: translate(0%,25%);
+    transform: translate(0%, 25%);
   }
 
   .smallLabel {
@@ -135,12 +135,11 @@
     width: 100px;
   }
 
-  .MuiPaper-root {
+  /* .MuiPaper-root {
     width: 300px;
     height: 320px;
-  }
+  } */
 }
-
 
 @media screen and (max-width: 425px) {
   .grid-container {
@@ -151,8 +150,8 @@
   .hero-text h1 {
     display: none;
   }
-  
-  .container{
+
+  .container {
     margin-top: 0px;
   }
 
@@ -176,7 +175,8 @@
     padding-right: 30px;
   }
 
-  .jarakbox, .incredecre {
+  .jarakbox,
+  .incredecre {
     margin-top: 10px;
     width: 200px;
   }
@@ -217,8 +217,8 @@
     margin-bottom: -5px;
   }
 
-  .MuiPaper-root {
+  /* .MuiPaper-root {
     width: 200px;
     height: 320px;
-  }
+  } */
 }
