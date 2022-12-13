@@ -17,7 +17,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { NumericFormat } from 'react-number-format';
 import { getListAirport } from '../../redux/actions/listairportAction';
-import './AdminNewRoutes.scss';
 
 const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
   const { inputRef, onChange, ...other } = props;
