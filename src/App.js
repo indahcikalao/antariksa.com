@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import Home from './Pages/Home/Home';
 import Header from './Components/Header/Header';
@@ -13,19 +14,44 @@ import BuyerProfile from './Pages/BuyerProfile/BuyerProfile';
 import AdminDash from './Pages/AdminDash/AdminDash';
 import ForgotPw from './Pages/ForgotPw/ForgotPw';
 import NewPw from './Pages/ForgotPw/NewPw';
-import store from './redux/store';
-// import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
+import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
 import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
 import NotFound from './Pages/NotFound/NotFound';
 import Transaction from './Pages/Transaction/Transaction';
 import Payment from './Pages/Payment/Payment';
 import History from './Pages/History/History';
+<<<<<<< HEAD
 import AdminLogin from './Pages/AdminLogin/AdminLogin'
+=======
+import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
+import Protected from './Components/Protected/Protected';
+import { whoami } from './redux/actions/authActions';
+
+>>>>>>> f68b92fd5857049bc93a7ba635ed8bbec425520a
 export default function App() {
+  const { token, user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      if (token) {
+        dispatch(
+          whoami((status) => {
+            if (status === 401) {
+              navigate('/login');
+            }
+          })
+        );
+      }
+    })();
+  }, [token, navigate, dispatch]);
+
   return (
-    <Provider store={store}>
-      {/* <AdminSpeedDials /> */}
-      <BuyerSpeedDials />
+    <>
+      {user?.role === 'Admin' && <AdminSpeedDials />}
+      {user?.role === 'Buyer' && <BuyerSpeedDials />}
+
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -36,19 +62,66 @@ export default function App() {
 
         <Route path="/search-result" element={<SearchRes />} />
 
-        <Route path="/buyer-profile" element={<BuyerProfile />} />
-        <Route path="/transaction" element={<Transaction />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/history" element={<History />} />
+        <Route
+          path="/buyer-profile"
+          element={
+            <Protected roles={['Buyer', 'Admin']}>
+              <BuyerProfile />
+            </Protected>
+          }
+        />
+        <Route
+          path="/transaction"
+          element={
+            <Protected roles={['Buyer', 'Admin']}>
+              <Transaction />
+            </Protected>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <Protected roles={['Buyer', 'Admin']}>
+              <Payment />
+            </Protected>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <Protected roles={['Buyer', 'Admin']}>
+              <History />
+            </Protected>
+          }
+        />
 
+<<<<<<< HEAD
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDash />} />
+=======
+        <Route
+          path="/admin-dashboard"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminDash />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-add-new-routes"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminNewRoutes />
+            </Protected>
+          }
+        />
+>>>>>>> f68b92fd5857049bc93a7ba635ed8bbec425520a
 
         <Route path="*" element={<NotFound />} />
       </Routes>
 
       <ToastContainer position="bottom-right" autoClose={3000} />
       <Footer />
-    </Provider>
+    </>
   );
 }

@@ -16,7 +16,7 @@ import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { getListAirport } from '../../redux/actions/listairportAction';
 
 const theme = createTheme({
@@ -40,10 +40,9 @@ const datetheme = createTheme({
           width: 300,
           height: 495,
           transform: 'translate(0%, 10%)',
-          
-        }
-      }
-    }
+        },
+      },
+    },
   },
 });
 
@@ -123,13 +122,20 @@ function Home() {
             <StyledEngineProvider injectFirst>
               <Autocomplete
                 id="combo-box-demo"
-                options= {
-                  listAirport?.map((list) =>
-                    list.name + " (" + list.code + ") - " + list.region
-                  )
-                }
+                options={listAirport?.map(
+                  (list) => list.name + ' (' + list.code + ') - ' + list.region
+                )}
                 componentsProps={{
-                  paper: {}
+                  paper: {
+                    sx: {
+                      width: '700px',
+                      height: '298px',
+                      '@media (max-width: 1024px)': {
+                        width: '300px',
+                        height: '320px',
+                      },
+                    },
+                  },
                 }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="From" />}
@@ -137,13 +143,20 @@ function Home() {
               />
               <Autocomplete
                 id="combo-box-demo"
-                options= {
-                  listAirport?.map((list) =>
-                    list.name + " (" + list.code + ") - " + list.region
-                  )
-                }
+                options={listAirport?.map(
+                  (list) => list.name + ' (' + list.code + ') - ' + list.region
+                )}
                 componentsProps={{
-                  paper: {}
+                  paper: {
+                    sx: {
+                      width: '700px',
+                      height: '298px',
+                      '@media (max-width: 1024px)': {
+                        width: '300px',
+                        height: '320px',
+                      },
+                    },
+                  },
                 }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="To" />}

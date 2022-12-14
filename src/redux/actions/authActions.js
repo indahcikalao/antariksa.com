@@ -6,7 +6,7 @@ import { setToken, setUser, setRole } from '../reducers/authReducer';
 export const register = (data, callback) => async (dispatch) => {
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_AUTH_API}/auth/register`,
+      `${process.env.REACT_APP_BASE_URL}/auth/register`,
       data
     );
     // console.log(result.status);
@@ -22,7 +22,7 @@ export const register = (data, callback) => async (dispatch) => {
 export const login = (data) => async (dispatch) => {
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_AUTH_API}/auth/login`,
+      `${process.env.REACT_APP_BASE_URL}/auth/login`,
       data
     );
     // console.log(result.data);
@@ -37,36 +37,37 @@ export const login = (data) => async (dispatch) => {
   }
 };
 
-// export const me = (callback) => async (dispatch, getState) => {
-//   try {
-//     // Get token
-//     const { token } = getState().auth;
+export const whoami = (callback) => async (dispatch, getState) => {
+  try {
+    // Get token
+    const { token } = getState().auth;
 
-//     // Authorize from backend
-//     const result = await axios.get(
-//       `${process.env.REACT_APP_AUTH_API}/api/v1/auth/me`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
+    // Authorize from backend
+    const result = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/auth/whoami`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
 
-//     dispatch(setUser(result.data));
-//   } catch (error) {
-//     if (error.response.status === 401) {
-//       // remove token
-//       localStorage.removeItem('token');
-//       dispatch(setToken(null));
-//       callback(error.response.status);
-//     }
-//   }
-// };
+    dispatch(setUser(result.data.data));
+  } catch (error) {
+    if (error.response.status === 401) {
+      // remove token
+      localStorage.removeItem('token');
+      dispatch(setToken(null));
+      callback(error.response.status);
+    }
+  }
+};
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
   dispatch(setToken(null));
   dispatch(setUser(null));
+  dispatch(setRole(null));
 };
 
 // export const loginWithGoogle = (accessToken) => async (dispatch) => {

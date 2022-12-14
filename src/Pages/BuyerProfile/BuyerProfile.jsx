@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 function BuyerProfile() {
   const [gender, setGender] = useState('');
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundImage: `url('./img/pesawat.jpg')` }}>
       <div className="container">
         <div className="app-wrapper">
         <h1 className="text-center">Profile User</h1>
@@ -19,7 +19,6 @@ function BuyerProfile() {
           {/* <label htmlFor="">Name</label> */}
           {/* <input type="text" className="form-control"placeholder="Search..." /> */}
           <br></br>
-          <br></br>
           <TextField fullWidth label="Full Name" id="fullWidth" />
           <br></br>
           <br></br>
@@ -27,7 +26,6 @@ function BuyerProfile() {
           <br></br>
           <br></br>
           <TextField fullWidth label="Phone Number" id="fullWidth" /> 
-          <br></br>
           <br></br>
           {/* <TextField id="select" value="10" select>
           <MenuItem value="10">Male</MenuItem>
