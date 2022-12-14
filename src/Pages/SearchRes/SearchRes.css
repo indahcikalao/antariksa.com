@@ -1,5 +1,4 @@
 .searchTicket {
-  background: url(./pesawat.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,9 +23,15 @@
 }
 
 @media screen and (max-width: 425px) {
-  .formLeft {
-    grid-template-columns: repeat(1, 1fr);
-    margin-top: 100px;
+  .searchTicketCard {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    left: -100%;
+    padding: 0px;
+  }
+  .searchTicketContainer {
+    padding: 120px 5px;
   }
 }
 
