@@ -7,61 +7,115 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
-function Header() {
+function Header({ setToken }) {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
     setClicked(!clicked);
   };
+  const handleLogout = () => {
+    window.location.reload();
+    localStorage.removeItem("token");
+    setToken(null);
+  };
 
   return (
     <div>
-      <nav className="navbarItems">
-        <h1 className="navbarLogo">
-          <a href="/" className="navbarLogo">
-            antariksa
-          </a>
-        </h1>
-        <div className="menu-icons" onClick={handleClick}>
-          {clicked ? (
-            <FaTimes style={{ cursor: 'pointer' }}></FaTimes>
-          ) : (
-            <FaBars style={{ cursor: 'pointer' }}></FaBars>
-          )}
-        </div>
-        <ul className={clicked ? 'navbarMenu active' : 'navbarMenu'}>
-          <li>
-            <PopupState variant="popover">
-              {(popupState) => (
-                <React.Fragment>
-                  <BsBellFill className="notif" {...bindTrigger(popupState)} />
-                  <Menu
-                    {...bindMenu(popupState)}
-                    sx={{ marginTop: 3, zIndex: 10000 }}>
-                    <MenuItem onClick={popupState.close}>
-                      Notification 1
-                    </MenuItem>
-                    <MenuItem onClick={popupState.close}>
-                      Notification 2
-                    </MenuItem>
-                  </Menu>
-                </React.Fragment>
+      {!localStorage.getItem("token")? (
+        <>
+          <nav className="navbarItems">
+            <h1 className="navbarLogo">
+              <a href="/" className="navbarLogo">
+                antariksa
+              </a>
+            </h1>
+            <div className="menu-icons" onClick={handleClick}>
+              {clicked ? (
+                <FaTimes style={{ cursor: 'pointer' }}></FaTimes>
+              ) : (
+                <FaBars style={{ cursor: 'pointer' }}></FaBars>
               )}
-            </PopupState>
-          </li>
-          <li>
-            <a href="/login" className="nav-links-login">
-              Login
-            </a>
-          </li>
-          <li>
-            <a href="/register" className="nav-links-regis">
-              Register
-            </a>
-          </li>
-        </ul>
-      </nav>
+            </div>
+            <ul className={clicked ? 'navbarMenu active' : 'navbarMenu'}>
+              <li>
+                <PopupState variant="popover">
+                  {(popupState) => (
+                    <React.Fragment>
+                      <BsBellFill className="notif" {...bindTrigger(popupState)} />
+                      <Menu
+                        {...bindMenu(popupState)}
+                        sx={{ marginTop: 3, zIndex: 10000 }}>
+                        <MenuItem onClick={popupState.close}>
+                          Notification 1
+                        </MenuItem>
+                        <MenuItem onClick={popupState.close}>
+                          Notification 2
+                        </MenuItem>
+                      </Menu>
+                    </React.Fragment>
+                  )}
+                </PopupState>
+              </li>
+              <li>
+                <a href="/login" className="nav-links-login">
+                  Login
+                </a>
+              </li>
+              <li>
+                <a href="/register" className="nav-links-regis">
+                  Register
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </>
+      ) : (
+        <>
+        <div>
+          <nav className="navbarItems">
+            <h1 className="navbarLogo">
+              <a href="/" className="navbarLogo">
+                antariksa
+              </a>
+            </h1>
+            <div className="menu-icons" onClick={handleClick}>
+              {clicked ? (
+                <FaTimes style={{ cursor: 'pointer' }}></FaTimes>
+              ) : (
+                <FaBars style={{ cursor: 'pointer' }}></FaBars>
+              )}
+            </div>
+            <ul className={clicked ? 'navbarMenu active' : 'navbarMenu'}>
+              <li>
+                <PopupState variant="popover">
+                  {(popupState) => (
+                    <React.Fragment>
+                      <BsBellFill className="notif" {...bindTrigger(popupState)} />
+                      <Menu
+                        {...bindMenu(popupState)}
+                        sx={{ marginTop: 3, zIndex: 10000 }}>
+                        <MenuItem onClick={popupState.close}>
+                          Notification 1
+                        </MenuItem>
+                        <MenuItem onClick={popupState.close}>
+                          Notification 2
+                        </MenuItem>
+                      </Menu>
+                    </React.Fragment>
+                  )}
+                </PopupState>
+              </li>
+              <li>
+                <a href="/register" className="nav-links-logout" onClick={handleLogout}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        </>
+      )}
     </div>
-  );
+  )
 }
 
 export default Header;

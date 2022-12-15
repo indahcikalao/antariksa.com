@@ -66,6 +66,25 @@
   transition: 0.2s ease-in-out;
 }
 
+.nav-links-logout {
+  text-decoration: none;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.7rem 1rem;
+  white-space: nowrap;
+  background-color: #252c35;
+  border-radius: 13px;
+}
+
+.nav-links-logout:hover {
+  background-color: #465065;
+  color: #fff;
+  border-radius: 13px;
+  transition: 0.2s ease-in-out;
+}
+
 .notif {
   color: #252c35;
   margin-top: 10px;
@@ -105,7 +124,8 @@
   }
 
   .nav-links-login,
-  .nav-links-regis {
+  .nav-links-regis,
+  .nav-links-logout {
     width: 100%;
     padding: 1rem 20px;
     display: block;
@@ -121,8 +141,13 @@
     margin-left: 0;
   }
 
-  .nav-links-regis {
+  .nav-links-regis,
+  .nav-links-logout {
     padding: 10px 0 10px 0;
+  }
+
+  .nav-links-logout {
+    margin-left: 0;
   }
 
   .menu-icons {
