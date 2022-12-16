@@ -14,7 +14,7 @@ function Transaction() {
           <TransactionTicket />
 
           <Grid item sm={7} xs={12} sx={{ mx: 1 }}>
-            <Grid container className="box" sx={{ mb: 3 }}>
+            <Grid container className="box" sx={{ mb: 3, pb: 2 }}>
               <Box
                 className="plane-img3"
                 sx={{
@@ -61,15 +61,6 @@ function Transaction() {
                     // onChange={(e) => setPhone(e.target.value)}
                     onChange={(e) => console.log(e.target.value)}
                   />
-
-                  <Button
-                    className="button-save"
-                    type="submit"
-                    // fullWidth
-                    variant="contained"
-                    sx={{ my: 2, py: 1, width: '100px' }}>
-                    Save
-                  </Button>
                 </Box>
               </Grid>
             </Grid>

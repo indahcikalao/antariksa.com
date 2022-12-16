@@ -17,6 +17,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { NumericFormat } from 'react-number-format';
 import { getListAirport } from '../../redux/actions/listairportAction';
+import { adminAddRoute } from '../../redux/actions/adminAction';
+import moment from 'moment/moment';
+import { useNavigate } from 'react-router-dom';
 
 const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
   const { inputRef, onChange, ...other } = props;
@@ -42,16 +45,45 @@ const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
 
 export default function AdminNewRoutes() {
   const [depDate, setDepDate] = useState(null);
+  const [depDateVal, setDepDateVal] = useState(null);
   const [arrTime, setArrTime] = useState(null);
+  const [arrTimeVal, setArrTimeVal] = useState(null);
   const [depTime, setDepTime] = useState(null);
+  const [depTimeVal, setDepTimeVal] = useState(null);
   const [price, setPrice] = useState(null);
+  const [totalPassenger, setTotalPassenger] = useState(null);
+  const [airportFrom, setAirportFrom] = useState([]);
+  const [airportTo, setAirportTo] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { listAirport } = useSelector((state) => state.listAirport);
 
   useEffect(() => {
     dispatch(getListAirport());
   }, [dispatch]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      depature_date: depDate,
+      arrival_time: arrTime,
+      depature_time: depTime,
+      price,
+      total_passenger: totalPassenger,
+      origin_airport: airportFrom,
+      destination_airport: airportTo,
+    };
+    dispatch(
+      adminAddRoute(data, (status) => {
+        if (status === 201) {
+          navigate('/admin-dashboard');
+        }
+      })
+    );
+  };
 
   return (
     <div
@@ -78,10 +110,10 @@ export default function AdminNewRoutes() {
                 <Grid container justifyContent="center">
                   <Grid item sm={5} xs={12} sx={{ mx: 2, mt: 3 }}>
                     <Autocomplete
-                      options={listAirport?.map(
-                        (list) =>
-                          list.name + ' (' + list.code + ') - ' + list.region
-                      )}
+                      options={listAirport}
+                      getOptionLabel={(list) =>
+                        list.name + ' (' + list.code + ') - ' + list.region
+                      }
                       componentsProps={{
                         paper: {
                           sx: {
@@ -95,21 +127,20 @@ export default function AdminNewRoutes() {
                         },
                       }}
                       renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="From"
-                          // onChange={(e) => console.log(e.target.value)}
-                        />
+                        <TextField {...params} label="From" />
                       )}
-                      onChange={(e) => console.log(e.target.value)}
+                      onChange={(event, value) => setAirportFrom(value.code)}
+                      isOptionEqualToValue={(option, value) =>
+                        option.id === value.id
+                      }
                     />
                   </Grid>
                   <Grid item sm={5} xs={12} sx={{ mx: 2, mt: 3 }}>
                     <Autocomplete
-                      options={listAirport?.map(
-                        (list) =>
-                          list.name + ' (' + list.code + ') - ' + list.region
-                      )}
+                      options={listAirport}
+                      getOptionLabel={(list) =>
+                        list.name + ' (' + list.code + ') - ' + list.region
+                      }
                       componentsProps={{
                         paper: {
                           sx: {
@@ -125,6 +156,10 @@ export default function AdminNewRoutes() {
                       renderInput={(params) => (
                         <TextField {...params} label="To" />
                       )}
+                      onChange={(event, value) => setAirportTo(value.code)}
+                      isOptionEqualToValue={(option, value) =>
+                        option.id === value.id
+                      }
                     />
                   </Grid>
 
@@ -134,8 +169,11 @@ export default function AdminNewRoutes() {
                         <MobileDatePicker
                           label="Departure Date"
                           inputFormat="MM/DD/YYYY"
-                          value={depDate}
-                          onChange={(e) => setDepDate(e)}
+                          value={depDateVal}
+                          onChange={(e) => {
+                            setDepDateVal(e);
+                            setDepDate(moment(e.$d).format('DD-MM-YYYY'));
+                          }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
                           )}
@@ -150,8 +188,11 @@ export default function AdminNewRoutes() {
                         <MobileTimePicker
                           label="Departure Time"
                           ampm={false}
-                          value={depTime}
-                          onChange={(e) => setDepTime(e)}
+                          value={depTimeVal}
+                          onChange={(e) => {
+                            setDepTimeVal(e);
+                            setDepTime(moment(e.$d).format('hh:mm'));
+                          }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
                           )}
@@ -166,8 +207,11 @@ export default function AdminNewRoutes() {
                         <MobileTimePicker
                           ampm={false}
                           label="Arrival Time"
-                          value={arrTime}
-                          onChange={(e) => setArrTime(e)}
+                          value={arrTimeVal}
+                          onChange={(e) => {
+                            setArrTimeVal(e);
+                            setArrTime(moment(e.$d).format('hh:mm'));
+                          }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
                           )}
@@ -179,27 +223,16 @@ export default function AdminNewRoutes() {
                   <Grid item xs={12} sx={{ mx: 4, mt: 3 }}>
                     <TextField
                       fullWidth
-                      label="Total Passanger"
+                      label="Total Passenger"
                       type="number"
-                      inputProps={{
-                        max: 300,
-                        min: 0,
-                      }}
+                      inputProps={{ min: 0 }}
+                      onChange={(e) =>
+                        setTotalPassenger(parseInt(e.target.value))
+                      }
                     />
                   </Grid>
 
                   <Grid item xs={12} sx={{ mx: 4, mt: 3 }}>
-                    {/* <TextField
-                      // required
-                      fullWidth
-                      label="Price"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">IDR</InputAdornment>
-                        ),
-                      }}
-                      autoFocus
-                    /> */}
                     <TextField
                       fullWidth
                       label="Price"
@@ -213,17 +246,26 @@ export default function AdminNewRoutes() {
                     />
                   </Grid>
                 </Grid>
+                <Button
+                  onClick={handleSubmit}
+                  disabled={
+                    !depDate ||
+                    !arrTime ||
+                    !depTime ||
+                    !price ||
+                    !totalPassenger ||
+                    !airportFrom ||
+                    !airportTo
+                  }
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, py: 1 }}>
+                  <BsPlusCircleFill
+                    style={{ marginRight: '10px', fontSize: '18px' }}
+                  />
+                  Submit New Routes
+                </Button>
               </Box>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, py: 1 }}>
-                <BsPlusCircleFill
-                  style={{ marginRight: '10px', fontSize: '18px' }}
-                />
-                Submit New Routes
-              </Button>
             </Grid>
           </Grid>
         </div>
