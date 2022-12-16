@@ -39,6 +39,9 @@
   white-space: nowrap;
   transition: 0.2s ease-in-out;
   margin-left: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
 }
 
 .nav-links-regis {
@@ -50,6 +53,8 @@
   white-space: nowrap;
   background-color: #252c35;
   border-radius: 13px;
+  cursor: pointer;
+  border: none;
 }
 
 .nav-links-login:hover {
@@ -76,6 +81,8 @@
   white-space: nowrap;
   background-color: #252c35;
   border-radius: 13px;
+  cursor: pointer;
+  border: none;
 }
 
 .nav-links-logout:hover {

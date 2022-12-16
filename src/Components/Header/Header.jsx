@@ -6,6 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { Link } from 'react-router-dom';
 
 function Header({ setToken }) {
   const [clicked, setClicked] = useState(false);
@@ -23,11 +24,11 @@ function Header({ setToken }) {
       {!localStorage.getItem("token")? (
         <>
           <nav className="navbarItems">
-            <h1 className="navbarLogo">
-              <a href="/" className="navbarLogo">
-                antariksa
-              </a>
-            </h1>
+            <Link to='/'>
+              <h1 className="navbarLogo">
+                  antariksa
+              </h1>
+            </Link>
             <div className="menu-icons" onClick={handleClick}>
               {clicked ? (
                 <FaTimes style={{ cursor: 'pointer' }}></FaTimes>
@@ -56,14 +57,18 @@ function Header({ setToken }) {
                 </PopupState>
               </li>
               <li>
-                <a href="/login" className="nav-links-login">
-                  Login
-                </a>
+                <Link to='/login'>
+                  <button className="nav-links-login">
+                    Login
+                  </button>
+                </Link>
               </li>
               <li>
-                <a href="/register" className="nav-links-regis">
-                  Register
-                </a>
+                <Link to='/register'>
+                  <button className="nav-links-regis">
+                    Register
+                  </button>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -105,9 +110,11 @@ function Header({ setToken }) {
                 </PopupState>
               </li>
               <li>
-                <a href="/register" className="nav-links-logout" onClick={handleLogout}>
-                  Logout
-                </a>
+                <Link to='/'>
+                  <button className="nav-links-logout" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </Link>
               </li>
             </ul>
           </nav>
