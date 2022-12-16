@@ -7,7 +7,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
@@ -15,9 +14,10 @@ import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { StyledEngineProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListAirport } from '../../redux/actions/listairportAction';
+import moment from 'moment/moment';
 
 const theme = createTheme({
   palette: {
@@ -47,21 +47,28 @@ const datetheme = createTheme({
 });
 
 function Home() {
-  const [value, setValue] = React.useState(dayjs('2022-12-02T21:11:54'));
-  const [value1, setValue1] = React.useState(dayjs('2023-01-05T21:11:54'));
+  const [value, setValue] = useState(null);
+  const [depDate, setDepDate] = useState(null);
+  const [value1, setValue1] = useState(null);
   const [disabled, setDisabled] = useState(true);
+  const [airportFrom, setAirportFrom] = useState(null);
+  const [airportTo, setAirportTo] = useState(null);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { listAirport } = useSelector((state) => state.listAirport);
 
   const handleChangeDepart = (newValue) => {
     setValue(newValue);
+    setDepDate(moment(newValue.$d).format('DD-MM-YYYY'));
   };
 
   const handleChangeReturn = (newValue1) => {
     setValue1(newValue1);
   };
 
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
 
   const disabledButton = () => {
     setDisabled(true);
@@ -121,10 +128,10 @@ function Home() {
           <ThemeProvider theme={theme}>
             <StyledEngineProvider injectFirst>
               <Autocomplete
-                id="combo-box-demo"
-                options={listAirport?.map(
-                  (list) => list.name + ' (' + list.code + ') - ' + list.region
-                )}
+                options={listAirport}
+                getOptionLabel={(list) =>
+                  list.name + ' (' + list.code + ') - ' + list.region
+                }
                 componentsProps={{
                   paper: {
                     sx: {
@@ -139,13 +146,15 @@ function Home() {
                 }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="From" />}
+                onChange={(event, value) => setAirportFrom(value.code)}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
                 className="jarakbox"
               />
               <Autocomplete
-                id="combo-box-demo"
-                options={listAirport?.map(
-                  (list) => list.name + ' (' + list.code + ') - ' + list.region
-                )}
+                options={listAirport}
+                getOptionLabel={(list) =>
+                  list.name + ' (' + list.code + ') - ' + list.region
+                }
                 componentsProps={{
                   paper: {
                     sx: {
@@ -160,6 +169,8 @@ function Home() {
                 }}
                 sx={{ display: 'inline-block', width: 200 }}
                 renderInput={(params) => <TextField {...params} label="To" />}
+                onChange={(event, value) => setAirportTo(value.code)}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
                 className="jarakbox"
               />
             </StyledEngineProvider>
@@ -170,7 +181,7 @@ function Home() {
                 sx={{ display: 'inline-block', marginRight: 1 }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
-                    label="Depart"
+                    label="Depart Date"
                     inputFormat="MM/DD/YYYY"
                     value={value}
                     onChange={handleChangeDepart}
@@ -183,7 +194,7 @@ function Home() {
                 sx={{ display: 'inline-block', marginRight: 1 }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
-                    label="Return"
+                    label="Return Date"
                     inputFormat="MM/DD/YYYY"
                     value={value1}
                     onChange={handleChangeReturn}
@@ -216,16 +227,24 @@ function Home() {
           <br></br>
           <br></br>
           <StyledEngineProvider injectFirst>
-            <Link to={'/search-result'}>
-              <Button
-                className="searchflight"
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ width: 180, height: 50, fontSize: 17, float: 'right' }}>
-                Search Flight
-              </Button>
-            </Link>
+            <Button
+              className="searchflight"
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ width: 180, height: 50, fontSize: 17, float: 'right' }}
+              onClick={(e) => {
+                e.preventDefault();
+                airportFrom &&
+                  airportTo &&
+                  depDate &&
+                  counter &&
+                  navigate(
+                    `/search-result?oa=${airportFrom}&da=${airportTo}&dd=${depDate}&p=${counter}`
+                  );
+              }}>
+              Search Flight
+            </Button>
           </StyledEngineProvider>
         </div>
       </div>

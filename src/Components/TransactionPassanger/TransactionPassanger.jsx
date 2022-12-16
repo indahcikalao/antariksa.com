@@ -18,7 +18,7 @@ export default function TransactionPassanger({ i }) {
   const [expDate, setExpDate] = useState(null);
 
   return (
-    <Grid container className="box" sx={{ mb: 3 }}>
+    <Grid container className="box" sx={{ mb: 3, pb: 2 }}>
       <Box
         className="plane-img3"
         sx={{
@@ -95,16 +95,6 @@ export default function TransactionPassanger({ i }) {
             </LocalizationProvider>
           </Box>
         </Box>
-
-        <div className="button-save">
-          <Button
-            className="button-save"
-            type="submit"
-            variant="contained"
-            sx={{ mr: 3, my: 2, py: 1, width: '100px' }}>
-            Save
-          </Button>
-        </div>
       </Grid>
     </Grid>
   );
