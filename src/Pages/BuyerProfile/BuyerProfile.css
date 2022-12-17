@@ -14,17 +14,19 @@
   }
 }
 
-.container{
-  width:100%;
+.container {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 110px;
 }
 
+.prof {
+  padding: 120px 0;
+}
 
-.form-control{
+.form-control {
   outline: none;
   width: 260px;
   padding: 15px;
@@ -35,7 +37,7 @@
   border: 1px solid #c89666;
   border-radius: 10px;
 }
-.button-Add{
+.button-Add {
   width: 70px;
   padding: 15px 15px;
   font-size: 20px;
@@ -44,7 +46,7 @@
   background-color: #12343b;
   cursor: pointer;
 }
-.buttonEdit{
+.buttonEdit {
   /* width: 40px;
   padding: 15px 0;
   font-size: 15px;
@@ -60,7 +62,7 @@
   justify-items: right;
 }
 
-.buttonDel{
+.buttonDel {
   /* width: 40px;
   padding: 15px 0;
   font-size: 15px;
@@ -74,7 +76,7 @@
   color: #000;
   margin-right: 0px;
 }
-.app-wrapper{
+.app-wrapper {
   background-color: white;
   width: 500px;
   height: auto;
@@ -84,7 +86,7 @@
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 3px 6px 40px rgb(173, 196, 231);
-  margin-bottom:100px;
+  margin-bottom: 100px;
   margin-top: 150px;
 }
 @media screen and (max-width: 425px) {
@@ -95,7 +97,7 @@
   }
 }
 
-.list-item{
+.list-item {
   display: flex;
   margin: 10px 0;
   border: 5px solid #123;
@@ -105,7 +107,7 @@
 }
 .button-complete,
 .button-delete,
-.button-edit{
+.button-edit {
   border: none;
   outline: none;
   cursor: pointer;
@@ -114,19 +116,19 @@
   border-radius: 50%;
 }
 
-.button-complete{
+.button-complete {
   color: #ff6c6c;
   margin-right: 10px;
 }
 
-.button-edit{
+.button-edit {
   color: #e2d029;
   margin-right: 10px;
 }
-.icons{
+.icons {
   display: flex;
 }
-.button-delete{
+.button-delete {
   color: lightseagreen;
 }
 .App-logo {
@@ -154,11 +156,11 @@
 .App-link {
   color: #61dafb;
 }
-.edit-icon{
+.edit-icon {
   display: flex;
   margin-left: 250px;
 }
-.delete-icon{
+.delete-icon {
   display: flex;
 }
 
