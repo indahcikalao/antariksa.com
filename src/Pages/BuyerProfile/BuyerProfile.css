@@ -76,8 +76,8 @@
 }
 .app-wrapper{
   background-color: white;
-  width: 500px;
-  height: auto;
+  width: 600px;
+  height: 500px;
   /* min-width: 100px;
   min-height: 650px; */
   padding: 50px;
@@ -90,8 +90,9 @@
 @media screen and (max-width: 425px) {
   .app-wrapper {
     margin-bottom: 180px;
-    height: auto;
-    width: auto;
+    height: 400px;
+    width: 90%;
+    padding: 20px;
   }
 }
 

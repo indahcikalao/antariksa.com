@@ -20,14 +20,10 @@ import NotFound from './Pages/NotFound/NotFound';
 import Transaction from './Pages/Transaction/Transaction';
 import Payment from './Pages/Payment/Payment';
 import History from './Pages/History/History';
-<<<<<<< HEAD
-import AdminLogin from './Pages/AdminLogin/AdminLogin'
-=======
 import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
 import Protected from './Components/Protected/Protected';
 import { whoami } from './redux/actions/authActions';
 
->>>>>>> f68b92fd5857049bc93a7ba635ed8bbec425520a
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -95,10 +91,6 @@ export default function App() {
           }
         />
 
-<<<<<<< HEAD
-        <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin-dashboard" element={<AdminDash />} />
-=======
         <Route
           path="/admin-dashboard"
           element={
@@ -115,7 +107,6 @@ export default function App() {
             </Protected>
           }
         />
->>>>>>> f68b92fd5857049bc93a7ba635ed8bbec425520a
 
         <Route path="*" element={<NotFound />} />
       </Routes>

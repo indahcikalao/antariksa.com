@@ -8,7 +8,11 @@ import "./BuyerProfile.css";
 import { useDispatch, useSelector } from "react-redux"
 
 function BuyerProfile() {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
   const [gender, setGender] = useState('');
+
   return (
     <div className="app" style={{ backgroundImage: `url('./img/pesawat.jpg')` }}>
       <div className="container">
@@ -19,37 +23,23 @@ function BuyerProfile() {
           {/* <label htmlFor="">Name</label> */}
           {/* <input type="text" className="form-control"placeholder="Search..." /> */}
           <br></br>
-          <TextField fullWidth label="Full Name" id="fullWidth" />
+          <br></br>
+          Full Name:
           <br></br>
           <br></br>
-          <TextField fullWidth label="Email" id="fullWidth" />
+          <br></br>
+          Email:
           <br></br>
           <br></br>
-          <TextField fullWidth label="Phone Number" id="fullWidth" /> 
           <br></br>
-          {/* <TextField id="select" value="10" select>
-          <MenuItem value="10">Male</MenuItem>
-          <MenuItem value="20">Female</MenuItem>
-          </TextField> */}
-          <FormControl sx={{ width: 200 }} margin="dense">
-                      <InputLabel id="gender">Gender</InputLabel>
-                      <Select
-                        labelId="gender"
-                        value={gender}
-                        label="Gender"
-                        onChange={(e) => setGender(e.target.value)}>
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value="Male">Male</MenuItem>
-                        <MenuItem value="Female">Female</MenuItem>
-                      </Select>
-                    </FormControl>
+          Phone Number:
           <br></br>
           <br></br>
-          <Button type="submit" variant="contained">
-            save
-          </Button>
+          <br></br>
+          Gender:
+          <br></br>
+          <br></br>
+          
         {/* </div> */}
       </form>
               {/* <Form.Group controlId="name">
