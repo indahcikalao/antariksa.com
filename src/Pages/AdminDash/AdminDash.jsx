@@ -28,7 +28,7 @@ function AdminDash() {
         <Container sx={{ py: 10 }}>
           <Grid container justifyContent="center">
             <Grid item lg={3} md={4} s={8} sx={{ m: 2 }} className="box-info">
-              <Link to="/admin-all-users">
+              <Link to="/admin-list-user">
                 <Grid container>
                   <Grid item md={3} sx={{ mr: 2 }} className="grid">
                     <FaUserAlt style={{ fontSize: '50px' }} />
@@ -56,7 +56,7 @@ function AdminDash() {
             </Grid>
 
             <Grid item lg={3} md={4} s={8} sx={{ m: 2 }} className="box-info">
-              <Link to="/admin-all-transactions">
+              <Link to="/admin-list-transaction">
                 <Grid container>
                   <Grid item md={3} sx={{ mr: 2 }} className="grid">
                     <TbReportMoney style={{ fontSize: '60px' }} />

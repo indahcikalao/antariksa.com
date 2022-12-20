@@ -20,8 +20,10 @@ export default function HistoryCard({ item, listAirport, p }) {
   }
 
   return (
-    <Grid item xs={12} sx={{ mx: 5, mb: 1 }} className="his-grid">
-      <Link to={`/history-detail/${item.id}`}>
+
+    <Grid item md={12} sx={{ mx: 5, mb: 1 }} className="his-grid">
+      <Link to={`/detail-history`}>
+
         <Divider variant="middle" />
 
         <Grid container sx={{ pt: 2 }} justifyContent="center" className="coba">

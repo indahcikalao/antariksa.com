@@ -23,9 +23,9 @@ export default function AdminSpeedDials() {
       icon: withLink('/admin-add-new-routes', <FaPaperPlane />),
       name: 'Add New Routes',
     },
-    { icon: withLink('/admin-all-users', <FaUserAlt />), name: 'All Users' },
+    { icon: withLink('/admin-list-user', <FaUserAlt />), name: 'All Users' },
     {
-      icon: withLink('/admin-all-transactions', <TbReportMoney />),
+      icon: withLink('/admin-list-transaction', <TbReportMoney />),
       name: 'Transaction History',
     },
     {
