@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function HistoryCard() {
   return (
     <Grid item md={12} sx={{ mx: 5, mb: 1 }} className="his-grid">
-      <Link to={`/`}>
+      <Link to={`/detail-history`}>
         <Divider variant="middle" />
 
         <Grid container sx={{ pt: 2 }} justifyContent="center" className="coba">
