@@ -36,7 +36,7 @@ function SearchRes() {
           <div
             className="bg-hero-history"
             style={{
-              backgroundImage: `url('./img/plane12.jpg')`,
+              backgroundImage: `url('./img/plane14.jpg')`,
               borderRadius: '13px',
               padding: '15px',
               minHeight: '250px',
