@@ -1,79 +1,97 @@
-import React from 'react';
-import { Container, Grid, Button, Box, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Container, Grid, Button, Box } from '@mui/material';
 import './Transaction.scss';
 import TransactionTicket from '../../Components/TransactionTicket/TransactionTicket';
 import TransactionPassanger from '../../Components/TransactionPassanger/TransactionPassanger';
+import bg from '../../img/bg-gradient.png';
+import plane7 from '../../img/plane7.jpg';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getTransactionTicket,
+  transactionData,
+} from '../../redux/actions/transactionAction';
+import { getListAirport } from '../../redux/actions/listairportAction';
 
 function Transaction() {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('flightId');
+  const p = searchParams.get('passengers');
+
+  const [requestData, setRequestData] = useState({
+    id: 0,
+    passangers: [],
+  });
+
+  const { ticket } = useSelector((state) => state.transaction);
+  const { listAirport } = useSelector((state) => state.listAirport);
+
+  useEffect(() => {
+    dispatch(getTransactionTicket(id));
+    // dispatch(getTransactionTicket(params.id));
+    dispatch(getListAirport());
+
+    // if (params.id) {
+    //   setRequestData({
+    //     ...requestData,
+    //     id: params.id,
+    //   });
+    // }
+    if (id) {
+      setRequestData({
+        ...requestData,
+        id: id,
+      });
+    }
+    // }, [dispatch, params.id]);
+  }, [dispatch, id]);
+
+  // useEffect(() => {
+  //   console.log(requestData);
+  // }, [requestData]);
+
+  function handleBook(e) {
+    e.preventDefault();
+    dispatch(
+      transactionData(requestData, (status) => {
+        if (status === 201) {
+          navigate('/history');
+        }
+      })
+    );
+  }
+
   return (
-    <div
-      className="bg"
-      style={{ backgroundImage: `url('./img/bg-gradient.png')` }}>
+    <div className="bg" style={{ backgroundImage: `url(${bg})` }}>
       <Container sx={{ pt: 20, pb: 10 }}>
         <Grid container justifyContent="center">
-          <TransactionTicket />
+          <TransactionTicket
+            ticket={ticket}
+            p={p}
+            listAirport={listAirport}
+            // key={params.id}
+          />
 
           <Grid item sm={7} xs={12} sx={{ mx: 1 }}>
-            <Grid container className="box" sx={{ mb: 3, pb: 2 }}>
-              <Box
-                className="plane-img3"
-                sx={{
-                  backgroundImage: `url('./img/plane8.jpg')`,
-                }}
-              />
-              <Grid item xs={12} sx={{ p: 3 }}>
-                <div className="box-title">
-                  <h1>Contact Details</h1>
-                  <p>Who order this flight? Oh it's you!</p>
-                </div>
-
-                <Box component="form" sx={{ px: 3 }} className="button-save">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Full Name"
-                    autoFocus
-                    // value={name}
-                    onChange={(e) => console.log(e.target.value)}
-                    // onChange={(e) => setName(e.target.value)}
-                  />
-
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Email Address"
-                    type="email"
-                    // value={email}
-                    onChange={(e) => console.log(e.target.value)}
-                    autoFocus
-                  />
-
-                  <TextField
-                    margin="normal"
-                    autoComplete="tel"
-                    required
-                    fullWidth
-                    label="Phone Number"
-                    autoFocus
-                    // value={phone}
-                    // onChange={(e) => setPhone(e.target.value)}
-                    onChange={(e) => console.log(e.target.value)}
-                  />
-                </Box>
-              </Grid>
-            </Grid>
-
-            {[...Array(2)].map((item, index) => {
-              return <TransactionPassanger i={index} key={index} />;
+            {[...Array(parseInt(p))].map((item, index) => {
+              return (
+                <TransactionPassanger
+                  i={index}
+                  key={index}
+                  data={requestData}
+                  setData={setRequestData}
+                />
+              );
             })}
 
             <Grid container className="box" sx={{ mb: 3 }}>
               <Box
                 className="plane-img3"
                 sx={{
-                  backgroundImage: `url('./img/plane7.jpg')`,
+                  backgroundImage: `url(${plane7})`,
                 }}
               />
               <Grid item xs={12} sx={{ p: 3 }}>
@@ -87,7 +105,8 @@ function Transaction() {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mr: 3, my: 2, py: 1 }}>
+                  sx={{ mr: 3, my: 2, py: 1 }}
+                  onClick={handleBook}>
                   Book Now!
                 </Button>
               </Grid>
@@ -100,7 +119,3 @@ function Transaction() {
 }
 
 export default Transaction;
-<div className="box-title">
-  <h1>Passanger Details</h1>
-  <p>Let's go! Pack your things and get ready to fly with us!</p>
-</div>;
