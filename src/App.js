@@ -18,7 +18,7 @@ import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
 import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
 import NotFound from './Pages/NotFound/NotFound';
 import Transaction from './Pages/Transaction/Transaction';
-import Payment from './Pages/Payment/Payment';
+import DetailHistory from './Pages/DetailHistory/DetailHistory';
 import History from './Pages/History/History';
 import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
 import Protected from './Components/Protected/Protected';
@@ -78,10 +78,10 @@ export default function App() {
           }
         />
         <Route
-          path="/payment"
+          path="/detail-history"
           element={
             <Protected roles={['Buyer', 'Admin']}>
-              <Payment />
+              <DetailHistory />
             </Protected>
           }
         />
@@ -135,7 +135,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin-list-Transaction"
+          path="/admin-list-transaction"
           element={
             <Protected roles={['Admin']}>
               <AdminListTransaction />
