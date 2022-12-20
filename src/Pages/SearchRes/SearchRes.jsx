@@ -1,128 +1,99 @@
 import React, { useEffect } from 'react';
-import { Grid, Button, Container } from '@mui/material';
-import './SearchRes.css';
-// import SearchCard from './SearchCard';
-
+import { Container, Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { useSearchParams } from 'react-router-dom';
-import { getSearchAirport } from '../../redux/actions/listairportAction';
-import { BiTimer } from 'react-icons/bi';
-import { BsArrowRight } from 'react-icons/bs';
-import { FaPlane, FaPaperPlane } from 'react-icons/fa';
-// import { HiArrowLongRight } from 'react-icons/hi2';
+import { Link, useSearchParams } from 'react-router-dom';
+import {
+  getSearchAirport,
+  getListAirport,
+} from '../../redux/actions/listairportAction';
+import './SearchRes.css';
+import SearchCard from './SearchCard';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+import moment from 'moment/moment';
 
 function SearchRes() {
   const [searchParams] = useSearchParams();
   const oa = searchParams.get('oa');
   const da = searchParams.get('da');
   const dd = searchParams.get('dd');
+  const p = searchParams.get('p');
 
   const dispatch = useDispatch();
-  const { search } = useSelector((state) => state.listAirport);
+  const { search, listAirport } = useSelector((state) => state.listAirport);
+  const depDate = moment(dd, 'DD-MM-YYYY').format('DD MMMM YYYY');
 
   useEffect(() => {
     dispatch(getSearchAirport(oa, da, dd));
+    dispatch(getListAirport());
   }, [oa, da, dd, dispatch]);
-
-  function currencyFormat(num) {
-    return num
-      .toFixed(2)
-      .replace('.', ',')
-      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-  }
 
   return (
     <div
       className="searchTicket"
       style={{ backgroundImage: `url('./img/pesawat.jpg')` }}>
       <Container maxWidth="md" sx={{ py: 17 }}>
-        <div className="searchTicketContainer">
-          {/* {search.map((item, idx) => (
-          <>
-            <h1>{item.origin_airport}</h1>
-            <SearchCard key={idx} item={item} />
-          </>
-        ))} */}
-          {search.map((item, idx) => (
-            <div key={idx}>
-              <div className="box" style={{ padding: '30px 50px' }}>
-                <h2 className="airlines">
-                  <FaPaperPlane style={{ paddingRight: '10px' }} />
-                  {item.airlines}
-                </h2>
-                <br></br>
-                <Grid container justifyContent="center">
-                  <Grid
-                    item
-                    className="gridcenter"
-                    sm={2}
-                    xs={4}
-                    sx={{
-                      flexDirection: 'column',
-                    }}>
-                    <h3>{item.origin_airport}</h3>
-                    {item.depature_time}
-                  </Grid>
-                  <Grid item sm={5} xs={4}>
-                    <div className="gridcenter exceptXs">
-                      <p>
-                        <FaPlane style={{ fontSize: '20px' }} />
-                      </p>
-                      <p
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}>
-                        <BiTimer
-                          style={{ fontSize: '30px', paddingRight: '5px' }}
-                        />
-                        {item.duration_time}
-                      </p>
-                    </div>
-                    <div className="gridcenter onlyXs">
-                      <BsArrowRight />
-                    </div>
-                  </Grid>
-                  <Grid
-                    item
-                    className="gridcenter"
-                    sm={2}
-                    xs={4}
-                    sx={{
-                      flexDirection: 'column',
-                    }}>
-                    <h3>{item.destination_airport}</h3>
-                    {item.arrival_time}
-                  </Grid>
-                  <Grid
-                    item
-                    className="gridcenter"
-                    sm={3}
-                    xs={12}
-                    sx={{
-                      flexDirection: 'column',
-                    }}>
-                    <p>
-                      <strong style={{ paddingRight: '5px' }}>IDR</strong>
-                      {currencyFormat(parseInt(item.price))}
+        <div className="box">
+          <div
+            className="bg-hero-history"
+            style={{
+              backgroundImage: `url('./img/plane12.jpg')`,
+              borderRadius: '13px',
+              padding: '15px',
+              minHeight: '250px',
+            }}>
+            <h1>Search Result</h1>
+            <p>Here are the flights that you're Looking for! </p>
+            <div className="route">
+              {listAirport.map(
+                (item, i) =>
+                  oa === item.code && (
+                    <p key={i}>
+                      {item.region} ({oa})
                     </p>
-                    <Button
-                      variant="contained"
-                      sx={{ width: '100px' }}
-                      // onClick={() => this.bookNow(flight._id)}
-                      // href={"/book/" + flight._id}
-                    >
-                      Choose
-                    </Button>
-                  </Grid>
-                </Grid>
-              </div>
+                  )
+              )}
+              <HiOutlineArrowNarrowRight
+                style={{ fontSize: '30px', padding: '0 20px' }}
+              />
+              {listAirport.map(
+                (item, i) =>
+                  da === item.code && (
+                    <p key={i}>
+                      {item.region}({da})
+                    </p>
+                  )
+              )}
+            </div>
+            <p>{depDate}</p>
+          </div>
+        </div>
+        <br></br>
+        {search.length !== 0 ? (
+          search.map((item, idx) => (
+            <div key={idx}>
+              <SearchCard item={item} p={p} />
               <br></br>
             </div>
-          ))}
-        </div>
+          ))
+        ) : (
+          <div
+            className="box route"
+            style={{
+              padding: '30px',
+              textAlign: 'center',
+              flexDirection: 'column',
+              letterSpacing: '3px',
+            }}>
+            <h1>Oopsies!</h1>
+            <h3>No Flights Available Right Now!</h3>
+            <p>Let's look for the other schedule! </p>
+            <Link to={`/`}>
+              <Button variant="contained" sx={{ my: 1, width: '210px', py: 1 }}>
+                Search a New Schedule
+              </Button>
+            </Link>
+          </div>
+        )}
       </Container>
     </div>
   );

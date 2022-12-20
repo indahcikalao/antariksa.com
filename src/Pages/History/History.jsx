@@ -1,9 +1,24 @@
-import React from 'react';
-import { Container, Grid } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Button, Container, Grid } from '@mui/material';
 import './History.scss';
 import HistoryCard from '../../Components/HistoryCard/HistoryCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllHistory } from '../../redux/actions/transactionAction';
+import { getListAirport } from '../../redux/actions/listairportAction';
+import { Link } from 'react-router-dom';
 
 function History() {
+  const dispatch = useDispatch();
+  const { allHistory } = useSelector((state) => state.transaction);
+  const { listAirport } = useSelector((state) => state.listAirport);
+  const dataHis = allHistory[0];
+  const coba = allHistory[1];
+
+  useEffect(() => {
+    dispatch(getAllHistory());
+    dispatch(getListAirport());
+  }, [dispatch]);
+
   return (
     <div
       className="bg"
@@ -27,15 +42,39 @@ function History() {
             <p>Here are some flights that you've booked!</p>
           </div>
 
-          <div>
+          {!dataHis ? (
+            <Container
+              sx={{
+                height: '200px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: 'inherit',
+                letterSpacing: '3px',
+              }}>
+              <h2>No Flight History yet!</h2>
+              <p>would like to order your first flight with us?</p>
+              <Link to={'/'}>
+                <Button
+                  variant="contained"
+                  sx={{ my: 1, width: '120px', py: 1 }}>
+                  Book Now!
+                </Button>
+              </Link>
+            </Container>
+          ) : (
             <Grid container justifyContent="center">
-              <HistoryCard />
-              <HistoryCard />
-              <HistoryCard />
-              <HistoryCard />
-              <HistoryCard />
+              {dataHis?.map((item, i) => (
+                <HistoryCard
+                  key={i}
+                  item={item}
+                  listAirport={listAirport}
+                  p={coba}
+                />
+              ))}
             </Grid>
-          </div>
+          )}
         </div>
       </Container>
     </div>

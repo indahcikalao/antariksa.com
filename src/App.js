@@ -78,7 +78,7 @@ export default function App() {
           }
         />
         <Route
-          path="/payment"
+          path="/history-detail/:id"
           element={
             <Protected roles={['Buyer', 'Admin']}>
               <Payment />
