@@ -10,6 +10,7 @@ import './SearchRes.css';
 import SearchCard from './SearchCard';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import moment from 'moment/moment';
+import plane14 from '../../img/plane14.jpg';
 
 function SearchRes() {
   const [searchParams] = useSearchParams();
@@ -36,7 +37,7 @@ function SearchRes() {
           <div
             className="bg-hero-history"
             style={{
-              backgroundImage: `url('./img/plane14.jpg')`,
+              backgroundImage: `url(${plane14})`,
               borderRadius: '13px',
               padding: '15px',
               minHeight: '250px',
