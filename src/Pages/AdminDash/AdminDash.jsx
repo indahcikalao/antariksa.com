@@ -42,7 +42,7 @@ function AdminDash() {
             </Grid>
 
             <Grid item lg={3} md={4} s={8} sx={{ m: 2 }} className="box-info">
-              <Link to="/admin-add-new-routes">
+              <Link to="/admin-list-routes">
                 <Grid container>
                   <Grid item md={3} sx={{ mr: 2 }} className="grid">
                     <FaPaperPlane style={{ fontSize: '45px' }} />
