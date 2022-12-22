@@ -78,6 +78,7 @@ export default function App() {
           }
         />
         <Route
+
           path="/detail-history"
           element={
             <Protected roles={['Buyer', 'Admin']}>

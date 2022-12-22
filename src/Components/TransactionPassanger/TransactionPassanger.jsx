@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   TextField,
@@ -12,36 +12,82 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import moment from 'moment/moment';
+import plane9 from '../../img/plane9.jpg';
 
-export default function TransactionPassanger({ i }) {
+export default function TransactionPassanger({ i, data, setData }) {
   const [idType, setIdType] = useState('');
-  const [expDate, setExpDate] = useState(null);
+  const [expDate, setExpDate] = useState('');
+  const [expDateVal, setExpDateVal] = useState(null);
+  const [name, setName] = useState('');
+  const [nationality, setNationality] = useState('');
+  const [idNum, setIdNum] = useState('');
+
+  const passangers = data.passangers;
+
+  useEffect(() => {
+    const coba = {
+      name_passenger: name,
+      identity_number: idNum,
+      nationality,
+      identity_type: idType,
+      identity_exp_date: expDate,
+    };
+    passangers[i] = coba;
+    setData({
+      ...data,
+      passangers,
+    });
+  }, [name, nationality, idNum, idType]);
+
+  // function handleSave(e) {
+  //   e.preventDefault();
+  //   if (idType === 'KTP') {
+  //     const coba = {
+  //       name_passenger: name,
+  //       identity_number: idNum,
+  //       nationality,
+  //       identity_type: idType,
+  //     };
+  //     data[i] = coba;
+  //   }
+  //   if (idType === 'Passport') {
+  //     const coba = {
+  //       name_passenger: name,
+  //       identity_number: idNum,
+  //       nationality,
+  //       identity_type: idType,
+  //       identity_exp_date: expDate,
+  //     };
+  //     data[i] = coba;
+  //   }
+  // }
 
   return (
     <Grid container className="box" sx={{ mb: 3, pb: 2 }}>
       <Box
         className="plane-img3"
         sx={{
-          backgroundImage: `url('./img/plane9.jpg')`,
+          backgroundImage: `url(${plane9})`,
         }}
       />
       <Grid item xs={12} sx={{ p: 3 }}>
         <div className="box-title">
-          <h1>Passanger Details</h1>
+          <h1>Passenger Details</h1>
           <p>Let's go! Pack your things and get ready to fly with us!</p>
         </div>
 
         <Box component="form" sx={{ px: 3, pt: 2 }}>
-          <h3>Passanger {i + 1}</h3>
+          <h3>Passenger {i + 1}</h3>
           <TextField
             margin="normal"
             required
             fullWidth
             label="Full Name"
             autoFocus
-            // value={name}
-            onChange={(e) => console.log(e.target.value)}
-            // onChange={(e) => setName(e.target.value)}
+            value={name}
+            // onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
 
           <TextField
@@ -50,9 +96,9 @@ export default function TransactionPassanger({ i }) {
             fullWidth
             label="Nationality"
             autoFocus
-            // value={nationality}
-            onChange={(e) => console.log(e.target.value)}
-            // onChange={(e) => setName(e.target.value)}
+            value={nationality}
+            // onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => setNationality(e.target.value)}
           />
 
           <FormControl sx={{ width: 200 }} margin="normal">
@@ -76,9 +122,9 @@ export default function TransactionPassanger({ i }) {
             fullWidth
             label="Identity Number"
             autoFocus
-            // value={name}
-            onChange={(e) => console.log(e.target.value)}
-            // onChange={(e) => setName(e.target.value)}
+            value={idNum}
+            // onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => setIdNum(e.target.value)}
           />
           <Box sx={idType === 'Passport' ? { mt: 2 } : { display: 'none' }}>
             <LocalizationProvider
@@ -87,13 +133,35 @@ export default function TransactionPassanger({ i }) {
               <MobileDatePicker
                 disabled={idType !== 'Passport'}
                 label="Identitiy Expire Date"
-                inputFormat="MM/DD/YYYY"
-                value={expDate}
-                onChange={(e) => setExpDate(e)}
+                inputFormat="DD/MM/YYYY"
+                value={expDateVal}
+                onChange={(e) => {
+                  setExpDateVal(e);
+                  setExpDate(moment(e.$d).format('DD-MM-YYYY'));
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
           </Box>
+          {/* <div className="button-save">
+            <Button
+              // disabled={
+              //   idType === 'KTP'
+              //     ? !name || idNum.length !== 16 || !idType || !nationality
+              //     : !name ||
+              //       idNum.length === 16 ||
+              //       !idType ||
+              //       !nationality ||
+              //       !expDate
+              // }
+              className="button-save"
+              type="submit"
+              variant="contained"
+              sx={{ mt: 2, py: 1, width: '100px' }}
+              onClick={handleSave}>
+              Save
+            </Button>
+          </div> */}
         </Box>
       </Grid>
     </Grid>

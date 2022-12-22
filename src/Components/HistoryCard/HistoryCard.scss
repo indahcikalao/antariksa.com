@@ -11,8 +11,14 @@
     padding-top: 10px;
   }
 
-  .payment {
+  .dateandtime {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
 
+  .payment {
     text-align: center;
     color: white;
     font-weight: 500;
@@ -23,12 +29,15 @@
   }
   .payment.not {
     background-color: #bc0707;
-
   }
 }
 
 @media screen and (max-width: 600px) {
   .grid-i-his-card {
     justify-content: center;
+  }
+  .dateandtime {
+    justify-content: center;
+    padding-left: 0;
   }
 }
