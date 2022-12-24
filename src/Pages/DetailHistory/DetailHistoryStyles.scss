@@ -18,7 +18,11 @@
 
 .detailPassengerName {
   margin-left: 10px;
-  margin-bottom: -15px;
+  margin-bottom: 20px;
+  p {
+    padding: 0;
+  }
+  /* padding: 3px 0; */
 }
 
 .boxdetail {
@@ -29,7 +33,8 @@
   z-index: 999;
 }
 
-.detailAirport, .detailDuration {
+.detailAirport,
+.detailDuration {
   display: flex;
   margin-left: 10px;
 }

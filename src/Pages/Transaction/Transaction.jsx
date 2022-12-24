@@ -5,7 +5,7 @@ import TransactionTicket from '../../Components/TransactionTicket/TransactionTic
 import TransactionPassanger from '../../Components/TransactionPassanger/TransactionPassanger';
 import bg from '../../img/bg-gradient.png';
 import plane7 from '../../img/plane7.jpg';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getTransactionTicket,
@@ -14,7 +14,6 @@ import {
 import { getListAirport } from '../../redux/actions/listairportAction';
 
 function Transaction() {
-  const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -31,27 +30,19 @@ function Transaction() {
 
   useEffect(() => {
     dispatch(getTransactionTicket(id));
-    // dispatch(getTransactionTicket(params.id));
     dispatch(getListAirport());
 
-    // if (params.id) {
-    //   setRequestData({
-    //     ...requestData,
-    //     id: params.id,
-    //   });
-    // }
     if (id) {
       setRequestData({
         ...requestData,
         id: id,
       });
     }
-    // }, [dispatch, params.id]);
   }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   console.log(requestData);
-  // }, [requestData]);
+  useEffect(() => {
+    console.log(requestData);
+  }, [requestData]);
 
   function handleBook(e) {
     e.preventDefault();
@@ -68,12 +59,7 @@ function Transaction() {
     <div className="bg" style={{ backgroundImage: `url(${bg})` }}>
       <Container sx={{ pt: 20, pb: 10 }}>
         <Grid container justifyContent="center">
-          <TransactionTicket
-            ticket={ticket}
-            p={p}
-            listAirport={listAirport}
-            // key={params.id}
-          />
+          <TransactionTicket ticket={ticket} p={p} listAirport={listAirport} />
 
           <Grid item sm={7} xs={12} sx={{ mx: 1 }}>
             {[...Array(parseInt(p))].map((item, index) => {

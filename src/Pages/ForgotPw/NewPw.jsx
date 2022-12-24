@@ -10,12 +10,25 @@ import {
 } from '@mui/material';
 import { FaPlane } from 'react-icons/fa';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import { resetPw } from '../../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
 
 function NewPw() {
+  const dispatch = useDispatch();
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      new_password: password,
+      confirm_new_password: passwordConfirm,
+    };
+    console.log(data)
+    dispatch(resetPw(data));
+  };
 
   return (
     <div
@@ -87,7 +100,7 @@ function NewPw() {
 
               <Button
                 disabled={!password || !passwordConfirm}
-                type="submit"
+                onClick={handleSubmit}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 1, mb: 2 }}>

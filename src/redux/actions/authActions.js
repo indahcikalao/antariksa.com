@@ -90,3 +90,35 @@ export const logout = () => async (dispatch) => {
 //     toast.error(error.response.data.message);
 //   }
 // };
+
+export const forogtPw = (data, callback) => async (dispatch) => {
+  try {
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/auth/forgot-password`,
+      data
+    );
+    console.log(result.status);
+    if (result.status === 200) {
+      toast.success('Email Sent!');
+      callback(result.status);
+    }
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+export const resetPw = (data, callback) => async (dispatch) => {
+  try {
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/auth/reset-password`,
+      data
+    );
+    console.log(result.status);
+    if (result.status === 200) {
+      toast.success('Reset!');
+      callback(result.status);
+    }
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
