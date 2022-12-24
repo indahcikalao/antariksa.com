@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { setAllHistory, setTicket } from '../reducers/transactionReducer';
+import {
+  setAllHistory,
+  setTicket,
+  setDetailHistory,
+} from '../reducers/transactionReducer';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -49,6 +53,20 @@ export const getAllHistory = () => async (dispatch, getState) => {
       },
     });
     dispatch(setAllHistory(data.data));
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+export const getDetailHistory = (id) => async (dispatch, getState) => {
+  const { token } = getState().auth;
+  try {
+    const { data } = await axios.get(`${BASE_URL}/history-detail/${id}`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    dispatch(setDetailHistory(data.data));
   } catch (error) {
     toast.error(error.response.data.message);
   }

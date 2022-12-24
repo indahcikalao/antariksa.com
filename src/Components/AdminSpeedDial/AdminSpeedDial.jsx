@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { SpeedDial, SpeedDialAction } from '@mui/material';
-import { FaPaperPlane, FaUserAlt } from 'react-icons/fa';
+import { SpeedDial, SpeedDialAction  } from '@mui/material';
+import { FaPaperPlane, FaUserAlt,FaPlus } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { TbReportMoney } from 'react-icons/tb';
 import { BsMenuButtonWideFill } from 'react-icons/bs';
@@ -20,13 +20,17 @@ export default function AdminSpeedDials() {
       name: 'Admin Dashboard',
     },
     {
-      icon: withLink('/admin-add-new-routes', <FaPaperPlane />),
+      icon: withLink('/admin-add-new-routes', <FaPlus />),
       name: 'Add New Routes',
+    },
+    {
+      icon: withLink('/admin-list-routes', <FaPaperPlane />),
+      name: 'All Route',
     },
     { icon: withLink('/admin-list-user', <FaUserAlt />), name: 'All Users' },
     {
       icon: withLink('/admin-list-transaction', <TbReportMoney />),
-      name: 'Transaction History',
+      name: 'All Transaction History',
     },
     {
       icon: (

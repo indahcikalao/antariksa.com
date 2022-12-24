@@ -3,7 +3,6 @@ import {
   Box,
   TextField,
   Grid,
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -38,30 +37,7 @@ export default function TransactionPassanger({ i, data, setData }) {
       ...data,
       passangers,
     });
-  }, [name, nationality, idNum, idType]);
-
-  // function handleSave(e) {
-  //   e.preventDefault();
-  //   if (idType === 'KTP') {
-  //     const coba = {
-  //       name_passenger: name,
-  //       identity_number: idNum,
-  //       nationality,
-  //       identity_type: idType,
-  //     };
-  //     data[i] = coba;
-  //   }
-  //   if (idType === 'Passport') {
-  //     const coba = {
-  //       name_passenger: name,
-  //       identity_number: idNum,
-  //       nationality,
-  //       identity_type: idType,
-  //       identity_exp_date: expDate,
-  //     };
-  //     data[i] = coba;
-  //   }
-  // }
+  }, [name, nationality, idNum, idType, expDate, i]);
 
   return (
     <Grid container className="box" sx={{ mb: 3, pb: 2 }}>
@@ -86,7 +62,6 @@ export default function TransactionPassanger({ i, data, setData }) {
             label="Full Name"
             autoFocus
             value={name}
-            // onChange={(e) => console.log(e.target.value)}
             onChange={(e) => setName(e.target.value)}
           />
 
@@ -97,7 +72,6 @@ export default function TransactionPassanger({ i, data, setData }) {
             label="Nationality"
             autoFocus
             value={nationality}
-            // onChange={(e) => console.log(e.target.value)}
             onChange={(e) => setNationality(e.target.value)}
           />
 
@@ -123,7 +97,6 @@ export default function TransactionPassanger({ i, data, setData }) {
             label="Identity Number"
             autoFocus
             value={idNum}
-            // onChange={(e) => console.log(e.target.value)}
             onChange={(e) => setIdNum(e.target.value)}
           />
           <Box sx={idType === 'Passport' ? { mt: 2 } : { display: 'none' }}>
@@ -143,25 +116,6 @@ export default function TransactionPassanger({ i, data, setData }) {
               />
             </LocalizationProvider>
           </Box>
-          {/* <div className="button-save">
-            <Button
-              // disabled={
-              //   idType === 'KTP'
-              //     ? !name || idNum.length !== 16 || !idType || !nationality
-              //     : !name ||
-              //       idNum.length === 16 ||
-              //       !idType ||
-              //       !nationality ||
-              //       !expDate
-              // }
-              className="button-save"
-              type="submit"
-              variant="contained"
-              sx={{ mt: 2, py: 1, width: '100px' }}
-              onClick={handleSave}>
-              Save
-            </Button>
-          </div> */}
         </Box>
       </Grid>
     </Grid>

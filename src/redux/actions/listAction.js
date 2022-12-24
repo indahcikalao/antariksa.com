@@ -14,6 +14,7 @@ export const getListUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`${BASE_URL}/admin/get-user`, {
       headers: {
+
         Authorization: `${token}`
       }
     });
@@ -29,8 +30,10 @@ export const getListTransaction = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`${BASE_URL}/admin/get-transaction`, {
       headers: {
+
         Authorization: `${token}`
       }
+
     });
     dispatch(getListTransactionReducer(data.data));
   } catch (error) {
@@ -44,11 +47,15 @@ export const getListRoute = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`${BASE_URL}/admin/get-route`, {
       headers: {
+
         Authorization: `${token}`
       }
+
     });
     dispatch(getListRouteReducer(data.data));
   } catch (error) {
     throw error;
   }
+
 };
+

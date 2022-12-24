@@ -78,8 +78,7 @@ export default function App() {
           }
         />
         <Route
-
-          path="/detail-history"
+          path="/detail-history/:id"
           element={
             <Protected roles={['Buyer', 'Admin']}>
               <DetailHistory />
@@ -100,14 +99,6 @@ export default function App() {
           element={
             <Protected roles={['Admin']}>
               <AdminDash />
-            </Protected>
-          }
-        />
-        <Route
-          path="/admin-add-new-routes"
-          element={
-            <Protected roles={['Admin']}>
-              <AdminNewRoutes />
             </Protected>
           }
         />
