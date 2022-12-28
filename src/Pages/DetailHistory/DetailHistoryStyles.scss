@@ -1,0 +1,49 @@
+.detailTujuan {
+  text-align: center;
+}
+
+.detailTujuan b {
+  font-size: 20px;
+}
+
+.detailOrderid {
+  text-align: center;
+  margin-top: -13px;
+  margin-bottom: 13px;
+}
+
+.detailPassenger {
+  margin: 10px;
+}
+
+.detailPassengerName {
+  margin-left: 10px;
+  margin-bottom: 20px;
+  p {
+    padding: 0;
+  }
+  /* padding: 3px 0; */
+}
+
+.boxdetail {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  height: fit-content;
+  border-radius: 13px;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.detailAirport,
+.detailDuration {
+  display: flex;
+  margin-left: 10px;
+}
+
+.detailTotal {
+  text-align: center;
+  font-size: 18px;
+}
+
+.detailTotal span {
+  margin-left: 17px;
+}
