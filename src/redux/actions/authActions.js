@@ -62,34 +62,39 @@ export const whoami = (callback) => async (dispatch, getState) => {
   }
 };
 
+export const setTokenGoogle = (code) => async (dispatch) => {
+  dispatch(setToken(code));
+};
+
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
   dispatch(setToken(null));
   dispatch(setUser(null));
 };
 
-// export const loginWithGoogle = (accessToken) => async (dispatch) => {
-//   try {
-//     const data = {
-//       access_token: accessToken,
-//     };
-//     const result = await axios.post(
-//       `${process.env.REACT_APP_AUTH_API}/api/v1/auth/google`,
-//       data
-//     );
-//     if (result.data.token) {
-//       // Set token from backend to local storage
-//       // {"data": { "token": "ini token" }}
-//       localStorage.setItem('token', result.data.token);
-//       dispatch(setToken(result.data.token));
-//       toast.success('Login success!');
-//     }
-//   } catch (error) {
-//     // If there are any error it will show the error message from backend
-//     // { "message": "Password salah" }
-//     toast.error(error.response.data.message);
-//   }
-// };
+export const loginWithGoogle = (accessToken) => async (dispatch) => {
+  try {
+    // const data = {
+    //   access_token: accessToken,
+    // };
+    // const result = await axios.get(
+    //   `${process.env.REACT_APP_BASE_URL}/auth/loginGoogle`,
+    //   data
+    // );
+    const result = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/auth/loginGoogle`
+    );
+    console.log(result);
+    // if (result.data.token) {
+    //   localStorage.setItem('token', result.data.token);
+    //   dispatch(setToken(result.data.token));
+    //   toast.success('Login success!');
+    // }
+  } catch (error) {
+    throw error;
+    // toast.error(error.response.data.message);
+  }
+};
 
 export const forogtPw = (data, callback) => async (dispatch) => {
   try {
@@ -97,9 +102,10 @@ export const forogtPw = (data, callback) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/auth/forgot-password`,
       data
     );
-    console.log(result.status);
     if (result.status === 200) {
-      toast.success('Email Sent!');
+      toast.success(
+        'Link to Change your Password was Sent! Go Check your Email!'
+      );
       callback(result.status);
     }
   } catch (error) {
@@ -107,15 +113,15 @@ export const forogtPw = (data, callback) => async (dispatch) => {
   }
 };
 
-export const resetPw = (data, callback) => async (dispatch) => {
+export const resetPw = (data, token, callback) => async (dispatch) => {
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/auth/reset-password`,
+      `${process.env.REACT_APP_BASE_URL}/auth/reset-password?token=${token}`,
       data
     );
     console.log(result.status);
     if (result.status === 200) {
-      toast.success('Reset!');
+      toast.success('Password Changed!');
       callback(result.status);
     }
   } catch (error) {

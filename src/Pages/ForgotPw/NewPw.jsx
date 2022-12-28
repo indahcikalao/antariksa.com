@@ -12,9 +12,13 @@ import { FaPlane } from 'react-icons/fa';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { resetPw } from '../../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function NewPw() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -26,8 +30,13 @@ function NewPw() {
       new_password: password,
       confirm_new_password: passwordConfirm,
     };
-    console.log(data)
-    dispatch(resetPw(data));
+    dispatch(
+      resetPw(data, token, (status) => {
+        if (status === 200) {
+          navigate('/login');
+        }
+      })
+    );
   };
 
   return (
@@ -36,7 +45,7 @@ function NewPw() {
       style={{ backgroundImage: `url('./img/bg-gradient.png')` }}>
       <Container sx={{ py: 20 }} maxWidth="sm">
         <div className="box">
-          <Grid Container justifyContent="center" sx={{ textAlign: 'center' }}>
+          <Grid container justifyContent="center" sx={{ textAlign: 'center' }}>
             <Grid
               className="plane-img2"
               item
