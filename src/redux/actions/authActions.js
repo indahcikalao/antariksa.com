@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { setToken, setUser, setRole } from '../reducers/authReducer';
+import { setToken, setUser } from '../reducers/authReducer';
 
 export const register = (data, callback) => async (dispatch) => {
   try {
@@ -29,7 +29,6 @@ export const login = (data) => async (dispatch) => {
     if (result.data.data.token) {
       localStorage.setItem('token', result.data.data.token);
       dispatch(setToken(result.data.data.token));
-      dispatch(setRole(result.data.data.role));
       toast.success('Login success!');
     }
   } catch (error) {
@@ -67,7 +66,6 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
   dispatch(setToken(null));
   dispatch(setUser(null));
-  dispatch(setRole(null));
 };
 
 // export const loginWithGoogle = (accessToken) => async (dispatch) => {

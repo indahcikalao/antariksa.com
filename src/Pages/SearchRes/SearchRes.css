@@ -4,75 +4,30 @@
   background-size: cover;
   min-height: 120vh;
 }
-
-.searchTicketContainer {
-  padding: 120px 72px;
-
-}
-
-.searchTicketCard {
+.gridcenter {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: rgba(255,255,255, 0.9);
-  min-height: 100px;
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 5px 0;
 }
 
-@media screen and (max-width: 425px) {
-  .searchTicketCard {
-    margin-left: 0px;
-    margin-right: 0px;
-    width: 100%;
-    left: -100%;
-    padding: 0px;
+.onlyXs {
+  display: none;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 599px) {
+  .onlyXs {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
   }
-  .searchTicketContainer {
-    padding: 120px 5px;
+  .exceptXs {
+    display: none;
   }
-}
-
-.formLeft {
-  flex: 2;
-  padding: 30px 35px;
-  justify-content: center;
-}
-
-.searchTicketHeading {
-  font-size: 20px;
-}
-
-/* .cardRight {
-  flex: 3.5;
-  background-image: url('../../public/images/searchBooking.jpg');
-  background-position: center;
-  background-size: cover;
-  overflow: hidden;
-  position: static;
-} */
-
-
-.searchTicketButton {
-  padding: 12px 32px;
-  border-radius: 10px;
-  background-image: linear-gradient(to right, #FAAB18, #FFDD00);
-  font-weight: 400;
-  border: 0px;
-  cursor: pointer;
-}
-
-.result {
-  margin-top: 35px;
-  padding: 30px 35px;
-  background-color: #fff;
-  border-radius: 10px;
-}
-
-.searchError {
-  color: red;
-  font-size: 16px;
-  margin-top: 20px;
+  .airlines {
+    text-align: center;
+  }
 }

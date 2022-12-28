@@ -23,6 +23,9 @@ import History from './Pages/History/History';
 import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
 import Protected from './Components/Protected/Protected';
 import { whoami } from './redux/actions/authActions';
+import AdminListRoute from './Pages/AdminListRoute/AdminListRoute';
+import AdminListUser from './Pages/AdminListUser/AdminListUser';
+import AdminListTransaction from './Pages/AdminListTransaction/AdminListTransaction';
 
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
@@ -104,6 +107,38 @@ export default function App() {
           element={
             <Protected roles={['Admin']}>
               <AdminNewRoutes />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-add-new-routes"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminNewRoutes />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-list-routes"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminListRoute />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-list-user"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminListUser />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-list-Transaction"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminListTransaction />
             </Protected>
           }
         />

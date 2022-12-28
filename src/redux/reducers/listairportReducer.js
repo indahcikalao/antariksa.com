@@ -1,19 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  listAirport: []
+  listAirport: [],
+  search: [],
 };
 
 const listAirportSlicer = createSlice({
-  name: "listAirport",
+  name: 'listAirport',
   initialState,
   reducers: {
     getListAirportReducer: (state, action) => {
       state.listAirport = action.payload;
-    }
+    },
+    getSearchAirportReducer: (state, action) => {
+      state.search = action.payload;
+    },
   },
 });
 
-export const { getListAirportReducer } = listAirportSlicer.actions;
+export const { getListAirportReducer, getSearchAirportReducer } =
+  listAirportSlicer.actions;
 
 export default listAirportSlicer.reducer;
