@@ -15,11 +15,12 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-import { BsEyeFill, BsEyeSlashFill, BsGoogle } from 'react-icons/bs';
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/actions/authActions';
 import LogSuccess from '../../Components/LogSuccess/LogSuccess';
 import '../Login/Login.scss';
+import GoogleLogin from '../../Components/GoogleLogin/GoogleLogin';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -193,16 +194,7 @@ export default function Register() {
                     </Button>
 
                     <Divider>or continue with</Divider>
-                    {/* <GoogleLogin setToken={setToken} /> */}
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 3, mb: 2 }}
-                      // onClick={googleLog}
-                    >
-                      <BsGoogle style={{ marginRight: '10px' }} />
-                      Google
-                    </Button>
+                    <GoogleLogin />
 
                     <Grid container justifyContent="flex-end">
                       <Grid item>
