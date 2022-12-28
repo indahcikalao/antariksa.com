@@ -26,6 +26,7 @@ import { whoami } from './redux/actions/authActions';
 import AdminListRoute from './Pages/AdminListRoute/AdminListRoute';
 import AdminListUser from './Pages/AdminListUser/AdminListUser';
 import AdminListTransaction from './Pages/AdminListTransaction/AdminListTransaction';
+import SaveToken from './Components/GoogleLogin/SaveToken';
 
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
@@ -56,6 +57,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/save-token-google" element={<SaveToken />} />
         <Route path="/forgot-pass" element={<ForgotPw />} />
         <Route path="/reset-pass" element={<NewPw />} />
 

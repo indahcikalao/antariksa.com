@@ -4,15 +4,23 @@ import { FaPlane } from 'react-icons/fa';
 import './ForgotPw.scss';
 import { forogtPw } from '../../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function ForgotPw() {
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email: email };
-    dispatch(forogtPw(data));
+    dispatch(
+      forogtPw(data, (status) => {
+        if (status === 200) {
+          navigate('/login');
+        }
+      })
+    );
   };
 
   return (
