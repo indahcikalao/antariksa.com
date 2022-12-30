@@ -8,9 +8,8 @@ import moment from 'moment/moment';
 
 export default function HistoryCard({ item, listAirport, p }) {
   let i = 0;
-  const depDate = moment(item.flight.depature_date, 'DD-MM-YYYY').format(
-    'Do MMM YYYY'
-  );
+  const coba = item?.flight?.depature_date;
+  const depDate = moment(coba, 'DD-MM-YYYY').format('Do MMM YYYY');
 
   function currencyFormat(num) {
     return num
@@ -21,12 +20,12 @@ export default function HistoryCard({ item, listAirport, p }) {
 
   return (
     <Grid item xs={12} sx={{ mx: 5, mb: 1 }} className="his-grid">
-      <Link to={`/detail-history/${item.id}`}>
+      <Link to={`/detail-history/${item?.id}`}>
         <Divider variant="middle" />
 
         <Grid container sx={{ pt: 2 }} justifyContent="center" className="coba">
           <Grid item sm={9} xs={12} className="grid-i-his-card">
-            <span>Booking id</span> {item.id}
+            <span>Booking id</span> {item?.id}
           </Grid>
           <Grid item sm={3} xs={12} className="grid-i-his-card">
             <Box className="payment">Paid</Box>
@@ -39,7 +38,7 @@ export default function HistoryCard({ item, listAirport, p }) {
               <RiPlaneFill style={{ fontSize: '30px', paddingRight: '10px' }} />
               {listAirport.map(
                 (airport, i) =>
-                  item.flight.origin_airport === airport.code && (
+                  item?.flight?.origin_airport === airport.code && (
                     <h3 key={i}>{airport.region}</h3>
                   )
               )}
@@ -48,28 +47,28 @@ export default function HistoryCard({ item, listAirport, p }) {
               />
               {listAirport.map(
                 (airport, i) =>
-                  item.flight.destination_airport === airport.code && (
+                  item?.flight?.destination_airport === airport.code && (
                     <h3 key={i}>{airport.region}</h3>
                   )
               )}
             </div>
             <p className="dateandtime">
-              {depDate} · {item.flight.depature_time}
+              {depDate} · {item?.flight?.depature_time}
               <HiOutlineArrowNarrowRight
                 style={{ padding: '0 5px', fontSize: '20px' }}
               />
-              {item.flight.arrival_time}
+              {item?.flight?.arrival_time}
             </p>
           </Grid>
           <Grid item sm={3} xs={12} className="grid-i-his-card">
             <span>IDR</span>
             {p.map(
               (pass) =>
-                pass.TransactionId === item.id && console.log((i = i + 1))
+                pass.TransactionId === item?.id && console.log((i = i + 1))
             )}
             {i !== 0
-              ? currencyFormat(parseInt(item.flight.price) * i)
-              : currencyFormat(parseInt(item.flight.price))}
+              ? currencyFormat(parseInt(item?.flight?.price) * i)
+              : currencyFormat(parseInt(item?.flight?.price))}
           </Grid>
         </Grid>
       </Link>

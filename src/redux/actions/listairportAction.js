@@ -16,12 +16,19 @@ export const getListAirport = () => async (dispatch) => {
   }
 };
 
-export const getSearchAirport = (oa, da, dd) => async (dispatch) => {
+export const getSearchAirport = (oa, da, dd, filter) => async (dispatch) => {
   try {
+    if(filter){
+      const { data } = await axios.get(
+      `${BASE_URL}/search?oa=${oa}&da=${da}&dd=${dd}&price=${filter}`
+    );
+    dispatch(getSearchAirportReducer(data.data));
+    }else{
     const { data } = await axios.get(
       `${BASE_URL}/search?oa=${oa}&da=${da}&dd=${dd}`
     );
     dispatch(getSearchAirportReducer(data.data));
+    }
   } catch (error) {
     throw error;
   }

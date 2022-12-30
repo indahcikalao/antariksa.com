@@ -9,7 +9,6 @@ export const register = (data, callback) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/auth/register`,
       data
     );
-    // console.log(result.status);
     if (result.status === 201) {
       toast.success('Register success!');
       callback(result.status);
@@ -37,10 +36,7 @@ export const login = (data) => async (dispatch) => {
 
 export const whoami = (callback) => async (dispatch, getState) => {
   try {
-    // Get token
     const { token } = getState().auth;
-
-    // Authorize from backend
     const result = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/auth/whoami`,
       {
@@ -53,7 +49,6 @@ export const whoami = (callback) => async (dispatch, getState) => {
     dispatch(setUser(result.data.data));
   } catch (error) {
     if (error.response.status === 401) {
-      // remove token
       localStorage.removeItem('token');
       dispatch(setToken(null));
       callback(error.response.status);
@@ -62,6 +57,7 @@ export const whoami = (callback) => async (dispatch, getState) => {
 };
 
 export const setTokenGoogle = (code) => async (dispatch) => {
+  localStorage.setItem('token', code);
   dispatch(setToken(code));
 };
 
@@ -71,29 +67,6 @@ export const logout = () => async (dispatch) => {
   dispatch(setUser(null));
 };
 
-export const loginWithGoogle = (accessToken) => async (dispatch) => {
-  try {
-    // const data = {
-    //   access_token: accessToken,
-    // };
-    // const result = await axios.get(
-    //   `${process.env.REACT_APP_BASE_URL}/auth/loginGoogle`,
-    //   data
-    // );
-    const result = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/auth/loginGoogle`
-    );
-    console.log(result);
-    // if (result.data.token) {
-    //   localStorage.setItem('token', result.data.token);
-    //   dispatch(setToken(result.data.token));
-    //   toast.success('Login success!');
-    // }
-  } catch (error) {
-    throw error;
-    // toast.error(error.response.data.message);
-  }
-};
 
 export const forogtPw = (data, callback) => async (dispatch) => {
   try {
@@ -140,9 +113,7 @@ export const editUser= (data, callback) => async (dispatch, getState) => {
         },
       }
     );
-    console.log(result.data);
     dispatch(setUser(result.data.data));
-    // console.log(result.status);
     if (result.status === 201) {
       toast.success('Profile Updated Successfully!');
       callback(result.status);

@@ -32,9 +32,9 @@ function SearchRes() {
   const depDate = moment(dd, 'DD-MM-YYYY').format('DD MMMM YYYY');
 
   useEffect(() => {
-    dispatch(getSearchAirport(oa, da, dd));
+    dispatch(getSearchAirport(oa, da, dd, filter));
     dispatch(getListAirport());
-  }, [oa, da, dd, dispatch]);
+  }, [oa, da, dd, filter, dispatch]);
 
   return (
     <div
@@ -110,11 +110,11 @@ function SearchRes() {
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                   displayEmpty>
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value="dsc">Low to High</MenuItem>
-                  <MenuItem value="asc">High to Low</MenuItem>
+
+                  <MenuItem value="">Newest</MenuItem>
+                  <MenuItem value="asc">Low to High</MenuItem>
+                  <MenuItem value="desc">High to Low</MenuItem>
+
                 </Select>
               </FormControl>
             </Grid>
