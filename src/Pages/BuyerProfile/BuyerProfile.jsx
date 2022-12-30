@@ -33,12 +33,8 @@ function BuyerProfile() {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      if (phone) {
-        setPhone(user.phone);
-      }
-      if (gender) {
-        setGender(user.gender);
-      }
+      setPhone(user.phone);
+      setGender(user.gender);
     }
   }, [user]);
 
@@ -74,22 +70,22 @@ function BuyerProfile() {
       <br></br>
       <Container>
         <Box>
-        <h4>Full Name  <BiEdit/> </h4>
+        <h4>Full Name  </h4>
         <Divider />
             <p>{name}</p>
              <br></br>
-             <br></br>
-             <h4>Email <BiEdit/></h4>
+             
+             <h4>Email </h4>
              <Divider />   
              <p>{email}</p>
              <br></br>
-             <br></br>
-             <h4>Phone Number <BiEdit/></h4>
+             
+             <h4>Phone Number </h4>
              <Divider />
              <p>{phone}</p>
              <br></br>
-             <br></br>
-             <h4>Gender <BiEdit/></h4>
+             
+             <h4>Gender </h4>
              <Divider />
              <p>{gender}</p>
              <br></br>
