@@ -42,7 +42,7 @@ function History() {
             <p>Here are some flights that you've booked!</p>
           </div>
 
-          {dataHis || coba ? (
+          {!dataHis || !coba ? (
             <Container
               sx={{
                 height: '200px',

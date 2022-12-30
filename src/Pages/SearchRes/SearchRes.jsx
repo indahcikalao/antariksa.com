@@ -1,5 +1,12 @@
-import React, { useEffect } from 'react';
-import { Container, Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import {
+  Container,
+  Button,
+  Grid,
+  FormControl,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
@@ -18,15 +25,16 @@ function SearchRes() {
   const da = searchParams.get('da');
   const dd = searchParams.get('dd');
   const p = searchParams.get('p');
+  const [filter, setFilter] = useState('');
 
   const dispatch = useDispatch();
   const { search, listAirport } = useSelector((state) => state.listAirport);
   const depDate = moment(dd, 'DD-MM-YYYY').format('DD MMMM YYYY');
 
   useEffect(() => {
-    dispatch(getSearchAirport(oa, da, dd));
+    dispatch(getSearchAirport(oa, da, dd, filter));
     dispatch(getListAirport());
-  }, [oa, da, dd, dispatch]);
+  }, [oa, da, dd, filter, dispatch]);
 
   return (
     <div
@@ -70,12 +78,55 @@ function SearchRes() {
         </div>
         <br></br>
         {search.length !== 0 ? (
-          search.map((item, idx) => (
-            <div key={idx}>
-              <SearchCard item={item} p={p} />
-              <br></br>
-            </div>
-          ))
+          <Grid container justifyContent="center">
+            <Grid
+              item
+              lg={2.6}
+              // xs={12}
+              className="box"
+              sx={{
+                mx: 1.5,
+                mb: 2,
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                '@media (max-width: 1199px)': {
+                  flexDirection: 'row',
+                  py: 1,
+                },
+              }}>
+              <h4>Price Filter</h4>
+              <FormControl
+                sx={{
+                  width: '150px',
+                  '@media (max-width: 1199px)': {
+                    ml: 2,
+                  },
+                }}
+                margin="dense"
+                size="small">
+                <Select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                  displayEmpty>
+
+                  <MenuItem value="">Newest</MenuItem>
+                  <MenuItem value="asc">Low to High</MenuItem>
+                  <MenuItem value="desc">High to Low</MenuItem>
+
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item lg={9} xs={12}>
+              {search.map((item, idx) => (
+                <div key={idx}>
+                  <SearchCard item={item} p={p} />
+                  <br></br>
+                </div>
+              ))}
+            </Grid>
+          </Grid>
         ) : (
           <div
             className="box route"

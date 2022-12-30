@@ -41,9 +41,9 @@ function Transaction() {
     }
   }, [dispatch, requestData, id]);
 
-  useEffect(() => {
-    console.log(requestData);
-  }, [requestData]);
+  // useEffect(() => {
+  //   console.log(requestData);
+  // }, [requestData]);
 
   function handleBook(e) {
     e.preventDefault();

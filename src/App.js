@@ -27,6 +27,9 @@ import AdminListRoute from './Pages/AdminListRoute/AdminListRoute';
 import AdminListUser from './Pages/AdminListUser/AdminListUser';
 import AdminListTransaction from './Pages/AdminListTransaction/AdminListTransaction';
 import AdminEditRoute from './Pages/AdminEditRoute/AdminEditRoute';
+import SaveToken from './Components/GoogleLogin/SaveToken';
+import FormEdit from './Pages/BuyerProfile/formEdit';
+
 
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
@@ -57,6 +60,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/save-token-google" element={<SaveToken />} />
         <Route path="/forgot-pass" element={<ForgotPw />} />
         <Route path="/reset-pass" element={<NewPw />} />
 
@@ -67,6 +71,14 @@ export default function App() {
           element={
             <Protected roles={['Buyer', 'Admin']}>
               <BuyerProfile />
+            </Protected>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <Protected roles={['Buyer', 'Admin']}>
+              <FormEdit />
             </Protected>
           }
         />
