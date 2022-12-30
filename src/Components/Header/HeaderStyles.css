@@ -103,6 +103,16 @@
   display: none;
 }
 
+.notifDetail {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.notifBox {
+  margin-left: -25px;
+  margin-top: 40px;
+}
+
 @media screen and (max-width: 425px) {
   .navbarLogo {
     font-size: 27px;
@@ -138,7 +148,8 @@
     display: block;
   }
 
-  .notif {
+  .notif
+   {
     padding-left: 0;
   }
 
@@ -159,5 +170,10 @@
 
   .menu-icons {
     display: block;
+  }
+
+  .notifBox {
+    margin-left: 0px;
+    margin-top: 40px;
   }
 }

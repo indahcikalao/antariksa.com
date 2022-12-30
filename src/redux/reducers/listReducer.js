@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-
   listUser : [],
   listTransaction : [],
   listRoute : [],
-
 };
 
 const listSlicer = createSlice({
@@ -20,16 +18,10 @@ const listSlicer = createSlice({
     },
     getListRouteReducer: (state, action) => {
       state.listRoute = action.payload;
-
-    },
+    }
   },
 });
 
-export const {
-  getListUserReducer,
-  getListTransactionReducer,
-  getListRouteReducer,
-} = listSlicer.actions;
-
+export const { getListUserReducer, getListTransactionReducer, getListRouteReducer } = listSlicer.actions;
 
 export default listSlicer.reducer;

@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 export const adminAddRoute = (data, callback) => async (dispatch, getState) => {
   const { token } = getState().auth;
-
   try {
     const result = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/route`,
@@ -21,5 +20,18 @@ export const adminAddRoute = (data, callback) => async (dispatch, getState) => {
     }
   } catch (error) {
     toast.error(error.response.data.message);
+  }
+};
+
+export const deleteListRoute = (id) => async (dispatch, getState) => {
+  const { token } = getState().auth;
+  try {
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/flight/${id}`, {
+      headers: {
+        Authorization: `${token}`
+      }
+    });
+  } catch (error) {
+    throw error;
   }
 };
