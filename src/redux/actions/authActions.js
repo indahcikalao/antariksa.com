@@ -140,7 +140,9 @@ export const editUser= (data, callback) => async (dispatch, getState) => {
         },
       }
     );
-    console.log(result.status);
+    console.log(result.data);
+    dispatch(setUser(result.data.data));
+    // console.log(result.status);
     if (result.status === 201) {
       toast.success('Profile Updated Successfully!');
       callback(result.status);
