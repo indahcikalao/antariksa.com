@@ -9,7 +9,6 @@ export const register = (data, callback) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/auth/register`,
       data
     );
-    // console.log(result.status);
     if (result.status === 201) {
       toast.success('Register success!');
       callback(result.status);
@@ -25,7 +24,6 @@ export const login = (data) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/auth/login`,
       data
     );
-    // console.log(result.data);
     if (result.data.data.token) {
       localStorage.setItem('token', result.data.data.token);
       dispatch(setToken(result.data.data.token));
@@ -69,6 +67,7 @@ export const logout = () => async (dispatch) => {
   dispatch(setUser(null));
 };
 
+
 export const forogtPw = (data, callback) => async (dispatch) => {
   try {
     const result = await axios.post(
@@ -95,6 +94,28 @@ export const resetPw = (data, token, callback) => async (dispatch) => {
     console.log(result.status);
     if (result.status === 200) {
       toast.success('Password Changed!');
+      callback(result.status);
+    }
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+export const editUser= (data, callback) => async (dispatch, getState) => {
+  const { token } = getState().auth;
+  try {
+    const result = await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/auth/editProfile`,
+      data,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+    dispatch(setUser(result.data.data));
+    if (result.status === 201) {
+      toast.success('Profile Updated Successfully!');
       callback(result.status);
     }
   } catch (error) {

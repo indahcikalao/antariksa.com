@@ -110,9 +110,11 @@ function SearchRes() {
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                   displayEmpty>
+
                   <MenuItem value="">Newest</MenuItem>
                   <MenuItem value="asc">Low to High</MenuItem>
                   <MenuItem value="desc">High to Low</MenuItem>
+
                 </Select>
               </FormControl>
             </Grid>

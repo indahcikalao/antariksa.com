@@ -6,12 +6,23 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  Grid,
+  Box,
+  Divider,
+  Container
 } from '@mui/material';
 import './BuyerProfile.css';
+import {BiEdit} from'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function BuyerProfile() {
   const { user } = useSelector((state) => state.auth);
+
+  // const navigate = useNavigate()
+  // const [task, setTask] = useState('');
+  // const [complete, setComplete] = useState(false);
 
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -22,14 +33,11 @@ function BuyerProfile() {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      if (phone) {
-        setPhone(user.phone);
-      }
-      if (gender) {
-        setGender(user.gender);
-      }
+      setPhone(user.phone);
+      setGender(user.gender);
     }
   }, [user]);
+
 
   return (
     <div
@@ -37,81 +45,48 @@ function BuyerProfile() {
       style={{ backgroundImage: `url('./img/pesawat.jpg')` }}>
       {/* {user && setName(user.name)} */}
       <div className="container prof">
-        <div className="app-wrapper">
-          <h1 className="text-center">Profile User</h1>
-          <form className="px-3 py-4">
-            {/* <div className="form-group"> */}
-            {/* <label htmlFor="">Name</label> */}
-            {/* <input type="text" className="form-control"placeholder="Search..." /> */}
-
-            <TextField
-              fullWidth
-              label="Full Name"
-              id="fullWidth"
-              margin="normal"
-              value={name}
-            />
-
-            <TextField
-              fullWidth
-              label="Email"
-              id="fullWidth"
-              margin="normal"
-              value={email}
-            />
-
-            <TextField
-              fullWidth
-              label="Phone Number"
-              id="fullWidth"
-              margin="normal"
-              value={phone}
-            />
-
-            {/* <TextField id="select" value="10" select>
-          <MenuItem value="10">Male</MenuItem>
-          <MenuItem value="20">Female</MenuItem>
-          </TextField> */}
-            <FormControl sx={{ width: 200 }} margin="dense">
-              <InputLabel id="gender">Gender</InputLabel>
-              <Select
-                labelId="gender"
-                value={gender}
-                label="Gender"
-                onChange={(e) => setGender(e.target.value)}>
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="Male">Male</MenuItem>
-                <MenuItem value="Female">Female</MenuItem>
-              </Select>
-            </FormControl>
-            <br></br>
-            <br></br>
-            <Button type="submit" variant="contained">
-              save
-            </Button>
-            {/* </div> */}
-          </form>
-          {/* <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
-              </Form.Group> */}
-        </div>
+      <Grid
+      item
+      lg={4}
+      sm={7}
+      xs={12}
+      sx={{ mx: 2, mb: 3 }}
+      className="app-wrapper">
+      <Box
+        className="plane-img3"
+        md={12}
+        sx={{
+          backgroundImage: `url('./img/pesawat.jpg')`,
+        }}>
+        <h1>Profile User</h1>
+      </Box>
+      <br></br>
+      <Container>
+        <Box>
+        <h4>Full Name  </h4>
+        <Divider />
+            <p>{name}</p>
+             <br></br>
+             
+             <h4>Email </h4>
+             <Divider />   
+             <p>{email}</p>
+             <br></br>
+             
+             <h4>Phone Number </h4>
+             <Divider />
+             <p>{phone}</p>
+             <br></br>
+             
+             <h4>Gender </h4>
+             <Divider />
+             <p>{gender}</p>
+             <br></br>
+             <br></br>
+        </Box>
+        
+      </Container>
+    </Grid>
       </div>
     </div>
   );
