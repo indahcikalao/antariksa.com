@@ -59,10 +59,6 @@ const handleSubmit = async (e) => {
               onChange={(e) => setPhone(e.target.value)}
             />
 
-            {/* <TextField id="select" value="10" select>
-          <MenuItem value="10">Male</MenuItem>
-          <MenuItem value="20">Female</MenuItem>
-          </TextField> */}
             <FormControl sx={{ width: 200 }} margin="dense">
               <InputLabel id="gender">Gender</InputLabel>
               <Select
