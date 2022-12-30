@@ -26,31 +26,31 @@ function AdminListTransaction() {
       id: "flight",
       label: "Origin Airport",
       minWidth: 100,
-      format: (value) => value.origin_airport,
+      format: (value) => value?.origin_airport || "Data Not Found",
     },
     {
       id: "flight",
       label: "Destination Airport",
       minWidth: 100,
-      format: (value) => value.destination_airport,
+      format: (value) => value?.destination_airport || "Data Not Found",
     },
     {
       id: "flight",
       label: "Departure Date",
       minWidth: 100,
-      format: (value) => value.depature_date,
+      format: (value) => value?.depature_date || "Data Not Found",
     },
     {
       id: "flight",
       label: "Departure Time",
       minWidth: 100,
-      format: (value) => value.depature_time,
+      format: (value) => value?.depature_time || "Data Not Found",
     },
     {
       id: "flight",
       label: "Arrival Time",
       minWidth: 100,
-      format: (value) => value.arrival_time,
+      format: (value) => value?.arrival_time || "Data Not Found",
     },
   ];
   useEffect(() => {

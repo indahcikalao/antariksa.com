@@ -26,6 +26,7 @@ import { whoami } from './redux/actions/authActions';
 import AdminListRoute from './Pages/AdminListRoute/AdminListRoute';
 import AdminListUser from './Pages/AdminListUser/AdminListUser';
 import AdminListTransaction from './Pages/AdminListTransaction/AdminListTransaction';
+import AdminEditRoute from './Pages/AdminEditRoute/AdminEditRoute';
 import SaveToken from './Components/GoogleLogin/SaveToken';
 import FormEdit from './Pages/BuyerProfile/formEdit';
 
@@ -143,6 +144,14 @@ export default function App() {
           element={
             <Protected roles={['Admin']}>
               <AdminListTransaction />
+            </Protected>
+          }
+        />
+        <Route
+          path="/admin-edit-route/:id"
+          element={
+            <Protected roles={['Admin']}>
+              <AdminEditRoute />
             </Protected>
           }
         />

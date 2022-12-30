@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Grid, Button, Box } from '@mui/material';
-import './Transaction.scss';
-import TransactionTicket from '../../Components/TransactionTicket/TransactionTicket';
-import TransactionPassanger from '../../Components/TransactionPassanger/TransactionPassanger';
-import bg from '../../img/bg-gradient.png';
-import plane7 from '../../img/plane7.jpg';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Container, Grid, Button, Box } from "@mui/material";
+import "./Transaction.scss";
+import TransactionTicket from "../../Components/TransactionTicket/TransactionTicket";
+import TransactionPassanger from "../../Components/TransactionPassanger/TransactionPassanger";
+import bg from "../../img/bg-gradient.png";
+import plane7 from "../../img/plane7.jpg";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getTransactionTicket,
   transactionData,
-} from '../../redux/actions/transactionAction';
-import { getListAirport } from '../../redux/actions/listairportAction';
+} from "../../redux/actions/transactionAction";
+import { getListAirport } from "../../redux/actions/listairportAction";
+import { getNotif } from "../../redux/actions/notifAction";
 
 function Transaction() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const id = searchParams.get('flightId');
-  const p = searchParams.get('passengers');
+  const id = searchParams.get("flightId");
+  const p = searchParams.get("passengers");
 
   const [requestData, setRequestData] = useState({
     id: 0,
@@ -38,7 +39,7 @@ function Transaction() {
         id: id,
       });
     }
-  }, [dispatch, id]);
+  }, [dispatch, requestData, id]);
 
   // useEffect(() => {
   //   console.log(requestData);
@@ -49,10 +50,11 @@ function Transaction() {
     dispatch(
       transactionData(requestData, (status) => {
         if (status === 201) {
-          navigate('/history');
+          navigate("/history");
         }
       })
     );
+    dispatch(getNotif());
   }
 
   return (
@@ -92,7 +94,8 @@ function Transaction() {
                   fullWidth
                   variant="contained"
                   sx={{ mr: 3, my: 2, py: 1 }}
-                  onClick={handleBook}>
+                  onClick={handleBook}
+                >
                   Book Now!
                 </Button>
               </Grid>
