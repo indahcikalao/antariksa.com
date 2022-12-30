@@ -31,9 +31,6 @@ const handleSubmit = async (e) => {
           <h1 className="text-center" >Edit Profile</h1>
           <Divider/>
           <form className="px-3 py-4">
-            {/* <div className="form-group"> */}
-            {/* <label htmlFor="">Name</label> */}
-            {/* <input type="text" className="form-control"placeholder="Search..." /> */}
 
             <TextField
               fullWidth
@@ -88,24 +85,6 @@ const handleSubmit = async (e) => {
             </Button>
             {/* </div> */}
           </form>
-          {/* <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
-              </Form.Group> */}
         </div>
       </div>
     </div>
