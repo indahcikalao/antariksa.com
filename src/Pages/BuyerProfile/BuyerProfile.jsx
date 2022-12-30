@@ -38,13 +38,6 @@ function BuyerProfile() {
     }
   }, [user]);
 
-  // const handleEdit = (e) => {
-  //       e.preventDefault();
-  //       axios.put(`${process.env.REACT_APP_BASE_URL}/auth/editProfile`, {
-  //           task: task,
-  //           complete: complete,
-  //       }).then(navigate("/"));
-  //     }
 
   return (
     <div

@@ -25,7 +25,6 @@ export const login = (data) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/auth/login`,
       data
     );
-    // console.log(result.data);
     if (result.data.data.token) {
       localStorage.setItem('token', result.data.data.token);
       dispatch(setToken(result.data.data.token));
