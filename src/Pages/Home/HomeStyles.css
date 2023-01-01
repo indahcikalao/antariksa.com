@@ -90,7 +90,7 @@
     margin-top: 170px;
   }
 
-  video {
+  .planeLP {
     position: absolute;
     height: 110%;
     width: 100%;
@@ -155,7 +155,7 @@
     margin-top: 0px;
   }
 
-  video {
+  .planeLP {
     /* width: 200%;
     height: 100%;
     object-fit: fill; */
@@ -200,7 +200,7 @@
 
   .smallLabel {
     display: block;
-    transform: translate(-22%, 1280%);
+    transform: translate(-22%, 1305%);
   }
 
   .incredecre {

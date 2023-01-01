@@ -90,15 +90,12 @@ function Home() {
   return (
     <div>
       <div className="container">
-        <video
-          src="./img/bg.mp4"
-          muted
-          autoPlay
-          loop
-          type="video/mp4"
-          id="glass"
+        <img
+          src="./img/bg.jpg"
+          className="planeLP"
           width="100%"
-        ></video>
+          alt="Plane"
+        ></img>
         <div className="hero-text">
           <h1>Find Your Ticket Now</h1>
         </div>
