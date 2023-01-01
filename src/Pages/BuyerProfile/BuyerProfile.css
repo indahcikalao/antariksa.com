@@ -1,17 +1,16 @@
-.profilePic {
-  width: 60%;
-  display: flex;
-  align-items: center;
-  padding: 20px;
+.prof-head {
+  color: white;
+  letter-spacing: 5px;
 }
-.profileContainer {
-  display: flex;
-  margin: 20px;
+
+.proficon {
+  padding-right: 10px;
 }
-@media only screen and (max-width: 768px) {
-  .profileContainer {
-    flex-direction: column-reverse;
-  }
+
+.flexbutton {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .container {
@@ -20,177 +19,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.prof {
-  padding: 120px 0;
-}
-
-.form-control {
-  outline: none;
-  width: 260px;
-  padding: 15px;
-  margin-right: 15px;
-  font-size: 20px;
-  color: #ccc;
-  background-color: #000000;
-  border: 1px solid #c89666;
-  border-radius: 10px;
-}
-.button-Add {
-  width: 70px;
-  padding: 15px 15px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: 0;
-  background-color: #12343b;
-  cursor: pointer;
-}
-.buttonEdit {
-  /* width: 40px;
-  padding: 15px 0;
-  font-size: 15px;
-  border-radius: 10px;
-  margin-left: 25px;
-  border: 0;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f1af71;
-  cursor: pointer; */
-  color: #000;
-  margin-left: 120px;
-  justify-items: right;
-}
-
-.buttonDel {
-  /* width: 40px;
-  padding: 15px 0;
-  font-size: 15px;
-  border-radius: 10px;
-  margin-left: 10px;
-  border: 0;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f1af71;
-  cursor: pointer; */
-  color: #000;
-  margin-right: 0px;
-}
-.app-wrapper {
-  background-color: white;
-  width: 500px;
-  height: auto;
-  /* min-width: 100px;
-  min-height: 650px; */
-  /* padding: 50px; */
-  box-sizing: border-box;
-  border-radius: 10px;
-  /* box-shadow: 3px 6px 40px rgb(173, 196, 231); */
-  margin-top: 170px;
-  margin-bottom: 0px;
-  
-}
-.app-wrapper2 {
-  background-color: white;
-  width: 500px;
-  height: auto;
-  padding: 50px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  /* box-shadow: 3px 6px 40px rgb(173, 196, 231); */
-  margin-top: 100px;
-  margin-bottom: 0px;
-  
-}
-
-
-.box-title-buyer {
-  text-align: center;
-}
-
-.button-save {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.buyer{
-  text-align: left;
-  width: 450px;
-}
-
-.list-item {
-  display: flex;
-  margin: 10px 0;
-  border: 5px solid #123;
-  border-radius: 10px;
-  padding: 10px;
-  max-height: 30px;
-}
-.button-complete,
-.button-delete,
-.button-edit {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-  font-size: 28px;
-  border-radius: 50%;
-}
-
-.button-complete {
-  color: #ff6c6c;
-  margin-right: 10px;
-}
-
-.button-edit {
-  color: #e2d029;
-  margin-right: 10px;
-}
-.icons {
-  display: flex;
-}
-.button-delete {
-  color: lightseagreen;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-.edit-icon {
-  display: flex;
-  margin-left: 250px;
-}
-.delete-icon {
-  display: flex;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

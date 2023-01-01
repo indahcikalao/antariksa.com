@@ -1,37 +1,64 @@
-import React from 'react';
-import { useState, useEffect } from "react";
-import Button from "@mui/material/Button"
-import { TextField, MenuItem, InputLabel, FormControl, Select, Divider} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  TextField,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Select,
+  Divider,
+  Container,
+  Box,
+  Button,
+} from "@mui/material";
 import "./BuyerProfile.css";
-import { useDispatch, useSelector } from "react-redux"
-import { editUser } from '../../redux/actions/authActions'
+import { useDispatch, useSelector } from "react-redux";
+import { editUser } from "../../redux/actions/authActions";
+import { FaSave } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 function FormEdit() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState(``);
 
-const dispatch= useDispatch()
-const [name, setName] = useState(null);
-const [email, setEmail] = useState(null);
-const [phone, setPhone] = useState(null);
-const [gender, setGender] = useState('');
-
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      name, email, gender, phone
+      name,
+      gender,
+      phone,
     };
-    dispatch(editUser(data));
+    dispatch(
+      editUser(data, (status) => {
+        if (status === 201) {
+          navigate("/buyer-profile");
+        }
+      })
+    );
   };
+
+  useEffect(() => {
+    if (user) {
+      user.name && setName(user.name);
+      user.phone && setPhone(user.phone);
+      user.gender && setGender(user.gender);
+    }
+  }, [user]);
 
   return (
     <div
       className="app"
-      style= {{ backgroundImage: `url('./img/pesawat.jpg')` }}>
-      <div className="container prof">
-        <div className="app-wrapper2">
-          <h1 className="text-center" >Edit Profile</h1>
-          <Divider/>
+      style={{ backgroundImage: `url('./img/pesawat.jpg')` }}
+    >
+      <Container maxWidth="sm" sx={{ pt: 15, pb: 5 }}>
+        <div className="box" style={{ padding: "30px" }}>
+          <h1 style={{ textAlign: "center" }}>Edit Profile</h1>
+          <Divider />
           <form className="px-3 py-4">
-
             <TextField
               fullWidth
               label="Full Name"
@@ -39,15 +66,6 @@ const handleSubmit = async (e) => {
               margin="normal"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
-
-            <TextField
-              fullWidth
-              label="Email"
-              id="fullWidth"
-              margin="normal"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
 
             <TextField
@@ -66,7 +84,8 @@ const handleSubmit = async (e) => {
                 id="fullWidth"
                 value={gender}
                 label="Gender"
-                onChange={(e) => setGender(e.target.value)}>
+                onChange={(e) => setGender(e.target.value)}
+              >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
@@ -74,16 +93,35 @@ const handleSubmit = async (e) => {
                 <MenuItem value="Female">Female</MenuItem>
               </Select>
             </FormControl>
-            <br></br>
-            <br></br>
-            <Button type="submit" variant="contained" onClick={handleSubmit}>
-              save
-            </Button>
+            <div className="flexbutton">
+              <Button
+                variant="contained"
+                sx={{ mx: 0.2, width: "50vw" }}
+                onClick={() => navigate("/buyer-profile")}
+              >
+                <MdCancel className="proficon" style={{ fontSize: "16px" }} />{" "}
+                Cancel
+              </Button>
+
+              <Button
+                disabled={
+                  user?.name === name &&
+                  user?.gender === gender &&
+                  user?.phone === phone
+                }
+                variant="contained"
+                sx={{ mx: 0.2, width: "50vw" }}
+                onClick={handleSubmit}
+              >
+                <FaSave className="proficon" />
+                Save
+              </Button>
+            </div>
           </form>
         </div>
-      </div>
+      </Container>
     </div>
   );
-};
+}
 
 export default FormEdit;

@@ -9,23 +9,22 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editisRead, getNotif } from "../../redux/actions/notifAction";
+import { logout } from "../../redux/actions/authActions";
 
 function Header({ setToken }) {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
     setClicked(!clicked);
   };
-  const handleLogout = () => {
-    window.location.reload();
-    localStorage.removeItem("token");
-    setToken(null);
-  };
   const dispatch = useDispatch();
   const { notif } = useSelector((state) => state.notif);
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getNotif());
-  }, [dispatch]);
+    if (token) {
+      dispatch(getNotif());
+    }
+  }, [dispatch, token]);
 
   return (
     <div>
@@ -86,30 +85,34 @@ function Header({ setToken }) {
                           sx={{ zIndex: 10000 }}
                           className="notifBox"
                         >
-                          {notif.map((item, i) => (
-                            <MenuItem
-                              sx={
-                                !item.isRead
-                                  ? { backgroundColor: "#DEF2FF" }
-                                  : { backgroundColor: "#F0F0F0" }
-                              }
-                              onClick={() => {
-                                popupState.close();
-                                const id = item.id;
-                                dispatch(editisRead(id));
-                                dispatch(getNotif());
-                              }}
-                              key={i}
-                            >
-                              <Link to="/history">
-                                <div className="notifDetail">
-                                  <b>{item.tittle}</b>
-                                  <br />
-                                  {item.description}
-                                </div>
-                              </Link>
-                            </MenuItem>
-                          ))}
+                          {notif.length !== 0 ? (
+                            notif.map((item, i) => (
+                              <MenuItem
+                                sx={
+                                  !item.isRead
+                                    ? { backgroundColor: "#DEF2FF" }
+                                    : { backgroundColor: "#F0F0F0" }
+                                }
+                                onClick={() => {
+                                  popupState.close();
+                                  const id = item.id;
+                                  dispatch(editisRead(id));
+                                  dispatch(getNotif());
+                                }}
+                                key={i}
+                              >
+                                <Link to={`/detail-history/${item.id}`}>
+                                  <div className="notifDetail">
+                                    <b>{item.tittle}</b>
+                                    <br />
+                                    {item.description}
+                                  </div>
+                                </Link>
+                              </MenuItem>
+                            ))
+                          ) : (
+                            <MenuItem disabled>No Transation Yet!</MenuItem>
+                          )}
                         </Menu>
                       </React.Fragment>
                     )}
@@ -117,7 +120,10 @@ function Header({ setToken }) {
                 </li>
                 <li>
                   <Link to="/">
-                    <button className="nav-links-logout" onClick={handleLogout}>
+                    <button
+                      className="nav-links-logout"
+                      onClick={() => dispatch(logout())}
+                    >
                       Logout
                     </button>
                   </Link>
