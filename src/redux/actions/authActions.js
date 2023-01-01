@@ -1,7 +1,14 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
-import { setToken, setUser } from '../reducers/authReducer';
+import { setToken, setUser } from "../reducers/authReducer";
+import { setAllHistory } from "../reducers/transactionReducer";
+import { getNotifReducer } from "../reducers/notifReducer";
+import {
+  getListUserReducer,
+  getListTransactionReducer,
+  getListRouteReducer,
+} from "../reducers/listReducer";
 
 export const register = (data, callback) => async (dispatch) => {
   try {
@@ -10,7 +17,7 @@ export const register = (data, callback) => async (dispatch) => {
       data
     );
     if (result.status === 201) {
-      toast.success('Register success!');
+      toast.success("Register success!");
       callback(result.status);
     }
   } catch (error) {
@@ -25,9 +32,9 @@ export const login = (data) => async (dispatch) => {
       data
     );
     if (result.data.data.token) {
-      localStorage.setItem('token', result.data.data.token);
+      localStorage.setItem("token", result.data.data.token);
       dispatch(setToken(result.data.data.token));
-      toast.success('Login success!');
+      toast.success("Login success!");
     }
   } catch (error) {
     toast.error(error.response.data.message);
@@ -49,7 +56,7 @@ export const whoami = (callback) => async (dispatch, getState) => {
     dispatch(setUser(result.data.data));
   } catch (error) {
     if (error.response.status === 401) {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       dispatch(setToken(null));
       callback(error.response.status);
     }
@@ -57,16 +64,21 @@ export const whoami = (callback) => async (dispatch, getState) => {
 };
 
 export const setTokenGoogle = (code) => async (dispatch) => {
-  localStorage.setItem('token', code);
+  localStorage.setItem("token", code);
   dispatch(setToken(code));
 };
 
 export const logout = () => async (dispatch) => {
-  localStorage.removeItem('token');
+  localStorage.removeItem("token");
   dispatch(setToken(null));
   dispatch(setUser(null));
+  dispatch(setAllHistory([]));
+  dispatch(getNotifReducer([]));
+  dispatch(getNotifReducer([]));
+  dispatch(getListRouteReducer([]));
+  dispatch(getListTransactionReducer([]));
+  dispatch(getListUserReducer([]));
 };
-
 
 export const forogtPw = (data, callback) => async (dispatch) => {
   try {
@@ -76,7 +88,7 @@ export const forogtPw = (data, callback) => async (dispatch) => {
     );
     if (result.status === 200) {
       toast.success(
-        'Link to Change your Password was Sent! Go Check your Email!'
+        "Link to Change your Password was Sent! Go Check your Email!"
       );
       callback(result.status);
     }
@@ -93,7 +105,7 @@ export const resetPw = (data, token, callback) => async (dispatch) => {
     );
     console.log(result.status);
     if (result.status === 200) {
-      toast.success('Password Changed!');
+      toast.success("Password Changed!");
       callback(result.status);
     }
   } catch (error) {
@@ -101,7 +113,7 @@ export const resetPw = (data, token, callback) => async (dispatch) => {
   }
 };
 
-export const editUser= (data, callback) => async (dispatch, getState) => {
+export const editUser = (data, callback) => async (dispatch, getState) => {
   const { token } = getState().auth;
   try {
     const result = await axios.put(
@@ -113,12 +125,14 @@ export const editUser= (data, callback) => async (dispatch, getState) => {
         },
       }
     );
-    dispatch(setUser(result.data.data));
+    localStorage.setItem("token", result.data.data.token);
+    dispatch(setToken(result.data.data.token));
+    dispatch(setUser(result.data.data.updatedUser));
     if (result.status === 201) {
-      toast.success('Profile Updated Successfully!');
+      toast.success("Profile Updated Successfully!");
       callback(result.status);
     }
   } catch (error) {
-    toast.error(error.response.data.message);
+    throw error;
   }
 };

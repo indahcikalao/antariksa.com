@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { SpeedDial, SpeedDialAction } from '@mui/material';
-import { FaPaperPlane, FaUserAlt, FaPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaUserAlt, FaPlane, FaPencilAlt } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { BsMenuButtonWideFill } from 'react-icons/bs';
 import { logout } from '../../redux/actions/authActions';
@@ -14,6 +14,7 @@ export default function BuyerSpeedDials() {
 
   const actions = [
     { icon: withLink('/buyer-profile', <FaUserAlt />), name: 'My Profile' },
+    { icon: withLink('/edit-profile', <FaPencilAlt />), name: 'Edit Profile' },
     { icon: withLink('/', <FaPlane />), name: 'Book a Flight' },
     {
       icon: withLink('/history', <FaPaperPlane />),

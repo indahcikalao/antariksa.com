@@ -1,35 +1,34 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-import Home from './Pages/Home/Home';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
-import Register from './Pages/Register/Register';
-import Login from './Pages/Login/Login';
-import SearchRes from './Pages/SearchRes/SearchRes';
-import BuyerProfile from './Pages/BuyerProfile/BuyerProfile';
-import AdminDash from './Pages/AdminDash/AdminDash';
-import ForgotPw from './Pages/ForgotPw/ForgotPw';
-import NewPw from './Pages/ForgotPw/NewPw';
-import AdminSpeedDials from './Components/AdminSpeedDial/AdminSpeedDial';
-import BuyerSpeedDials from './Components/BuyerSpeedDial/BuyerSpeedDial';
-import NotFound from './Pages/NotFound/NotFound';
-import Transaction from './Pages/Transaction/Transaction';
-import DetailHistory from './Pages/DetailHistory/DetailHistory';
-import History from './Pages/History/History';
-import AdminNewRoutes from './Pages/AdminNewRoutes/AdminNewRoutes';
-import Protected from './Components/Protected/Protected';
-import { whoami } from './redux/actions/authActions';
-import AdminListRoute from './Pages/AdminListRoute/AdminListRoute';
-import AdminListUser from './Pages/AdminListUser/AdminListUser';
-import AdminListTransaction from './Pages/AdminListTransaction/AdminListTransaction';
-import AdminEditRoute from './Pages/AdminEditRoute/AdminEditRoute';
-import SaveToken from './Components/GoogleLogin/SaveToken';
-import FormEdit from './Pages/BuyerProfile/formEdit';
-
+import Home from "./Pages/Home/Home";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import Register from "./Pages/Register/Register";
+import Login from "./Pages/Login/Login";
+import SearchRes from "./Pages/SearchRes/SearchRes";
+import BuyerProfile from "./Pages/BuyerProfile/BuyerProfile";
+import AdminDash from "./Pages/AdminDash/AdminDash";
+import ForgotPw from "./Pages/ForgotPw/ForgotPw";
+import NewPw from "./Pages/ForgotPw/NewPw";
+import AdminSpeedDials from "./Components/AdminSpeedDial/AdminSpeedDial";
+import BuyerSpeedDials from "./Components/BuyerSpeedDial/BuyerSpeedDial";
+import NotFound from "./Pages/NotFound/NotFound";
+import Transaction from "./Pages/Transaction/Transaction";
+import DetailHistory from "./Pages/DetailHistory/DetailHistory";
+import History from "./Pages/History/History";
+import AdminNewRoutes from "./Pages/AdminNewRoutes/AdminNewRoutes";
+import Protected from "./Components/Protected/Protected";
+import { whoami } from "./redux/actions/authActions";
+import AdminListRoute from "./Pages/AdminListRoute/AdminListRoute";
+import AdminListUser from "./Pages/AdminListUser/AdminListUser";
+import AdminListTransaction from "./Pages/AdminListTransaction/AdminListTransaction";
+import AdminEditRoute from "./Pages/AdminEditRoute/AdminEditRoute";
+import SaveToken from "./Components/GoogleLogin/SaveToken";
+import FormEdit from "./Pages/BuyerProfile/formEdit";
 
 export default function App() {
   const { token, user } = useSelector((state) => state.auth);
@@ -42,7 +41,7 @@ export default function App() {
         dispatch(
           whoami((status) => {
             if (status === 401) {
-              navigate('/login');
+              navigate("/login");
             }
           })
         );
@@ -52,8 +51,8 @@ export default function App() {
 
   return (
     <>
-      {user?.role === 'Admin' && <AdminSpeedDials />}
-      {user?.role === 'Buyer' && <BuyerSpeedDials />}
+      {user?.role === "Admin" && <AdminSpeedDials />}
+      {user?.role === "Buyer" && <BuyerSpeedDials />}
 
       <Header />
       <Routes>
@@ -69,7 +68,7 @@ export default function App() {
         <Route
           path="/buyer-profile"
           element={
-            <Protected roles={['Buyer', 'Admin']}>
+            <Protected roles={["Buyer", "Admin"]}>
               <BuyerProfile />
             </Protected>
           }
@@ -77,7 +76,7 @@ export default function App() {
         <Route
           path="/edit-profile"
           element={
-            <Protected roles={['Buyer', 'Admin']}>
+            <Protected roles={["Buyer", "Admin"]}>
               <FormEdit />
             </Protected>
           }
@@ -85,7 +84,7 @@ export default function App() {
         <Route
           path="/transaction"
           element={
-            <Protected roles={['Buyer', 'Admin']}>
+            <Protected roles={["Buyer", "Admin"]}>
               <Transaction />
             </Protected>
           }
@@ -93,7 +92,7 @@ export default function App() {
         <Route
           path="/detail-history/:id"
           element={
-            <Protected roles={['Buyer', 'Admin']}>
+            <Protected roles={["Buyer", "Admin"]}>
               <DetailHistory />
             </Protected>
           }
@@ -101,7 +100,7 @@ export default function App() {
         <Route
           path="/history"
           element={
-            <Protected roles={['Buyer', 'Admin']}>
+            <Protected roles={["Buyer", "Admin"]}>
               <History />
             </Protected>
           }
@@ -110,7 +109,7 @@ export default function App() {
         <Route
           path="/admin-dashboard"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminDash />
             </Protected>
           }
@@ -118,7 +117,7 @@ export default function App() {
         <Route
           path="/admin-add-new-routes"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminNewRoutes />
             </Protected>
           }
@@ -126,7 +125,7 @@ export default function App() {
         <Route
           path="/admin-list-routes"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminListRoute />
             </Protected>
           }
@@ -134,7 +133,7 @@ export default function App() {
         <Route
           path="/admin-list-user"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminListUser />
             </Protected>
           }
@@ -142,7 +141,7 @@ export default function App() {
         <Route
           path="/admin-list-transaction"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminListTransaction />
             </Protected>
           }
@@ -150,7 +149,7 @@ export default function App() {
         <Route
           path="/admin-edit-route/:id"
           element={
-            <Protected roles={['Admin']}>
+            <Protected roles={["Admin"]}>
               <AdminEditRoute />
             </Protected>
           }

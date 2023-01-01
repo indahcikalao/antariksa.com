@@ -39,7 +39,7 @@ function Transaction() {
         id: id,
       });
     }
-  }, [dispatch, requestData, id]);
+  }, [dispatch, id]);
 
   // useEffect(() => {
   //   console.log(requestData);

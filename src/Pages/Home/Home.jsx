@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import './HomeStyles.css';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import { StyledEngineProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getListAirport } from '../../redux/actions/listairportAction';
-import moment from 'moment/moment';
+import React, { useState, useEffect } from "react";
+import "./HomeStyles.css";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import { StyledEngineProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getListAirport } from "../../redux/actions/listairportAction";
+import moment from "moment/moment";
+import { getNotif } from "../../redux/actions/notifAction";
 
 const theme = createTheme({
   palette: {
-    primary: { main: '#252C35' },
+    primary: { main: "#252C35" },
   },
 });
 
@@ -30,7 +31,7 @@ const datetheme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
+          backgroundColor: "white",
         },
       },
     },
@@ -39,7 +40,7 @@ const datetheme = createTheme({
         root: {
           width: 300,
           height: 495,
-          transform: 'translate(0%, 10%)',
+          transform: "translate(0%, 10%)",
         },
       },
     },
@@ -58,10 +59,11 @@ function Home() {
   const navigate = useNavigate();
 
   const { listAirport } = useSelector((state) => state.listAirport);
+  const { token } = useSelector((state) => state.auth);
 
   const handleChangeDepart = (newValue) => {
     setValue(newValue);
-    setDepDate(moment(newValue.$d).format('DD-MM-YYYY'));
+    setDepDate(moment(newValue.$d).format("DD-MM-YYYY"));
   };
 
   const handleChangeReturn = (newValue1) => {
@@ -80,7 +82,10 @@ function Home() {
 
   useEffect(() => {
     dispatch(getListAirport());
-  }, [dispatch]);
+    if (token) {
+      dispatch(getNotif());
+    }
+  }, [dispatch, token]);
 
   return (
     <div>
@@ -92,7 +97,8 @@ function Home() {
           loop
           type="video/mp4"
           id="glass"
-          width="100%"></video>
+          width="100%"
+        ></video>
         <div className="hero-text">
           <h1>Find Your Ticket Now</h1>
         </div>
@@ -105,7 +111,8 @@ function Home() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  defaultValue="Return">
+                  defaultValue="Return"
+                >
                   <FormControlLabel
                     color="primary"
                     value="Return"
@@ -130,21 +137,21 @@ function Home() {
               <Autocomplete
                 options={listAirport}
                 getOptionLabel={(list) =>
-                  list.name + ' (' + list.code + ') - ' + list.region
+                  list.name + " (" + list.code + ") - " + list.region
                 }
                 componentsProps={{
                   paper: {
                     sx: {
-                      width: '700px',
-                      height: '298px',
-                      '@media (max-width: 1024px)': {
-                        width: '300px',
-                        height: '320px',
+                      width: "700px",
+                      height: "298px",
+                      "@media (max-width: 1024px)": {
+                        width: "300px",
+                        height: "320px",
                       },
                     },
                   },
                 }}
-                sx={{ display: 'inline-block', width: 200 }}
+                sx={{ display: "inline-block", width: 200 }}
                 renderInput={(params) => <TextField {...params} label="From" />}
                 onChange={(event, value) => setAirportFrom(value.code)}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -153,21 +160,21 @@ function Home() {
               <Autocomplete
                 options={listAirport}
                 getOptionLabel={(list) =>
-                  list.name + ' (' + list.code + ') - ' + list.region
+                  list.name + " (" + list.code + ") - " + list.region
                 }
                 componentsProps={{
                   paper: {
                     sx: {
-                      width: '700px',
-                      height: '298px',
-                      '@media (max-width: 1024px)': {
-                        width: '300px',
-                        height: '320px',
+                      width: "700px",
+                      height: "298px",
+                      "@media (max-width: 1024px)": {
+                        width: "300px",
+                        height: "320px",
                       },
                     },
                   },
                 }}
-                sx={{ display: 'inline-block', width: 200 }}
+                sx={{ display: "inline-block", width: 200 }}
                 renderInput={(params) => <TextField {...params} label="To" />}
                 onChange={(event, value) => setAirportTo(value.code)}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -178,7 +185,8 @@ function Home() {
             <ThemeProvider theme={datetheme}>
               <Box
                 className="departreturn"
-                sx={{ display: 'inline-block', marginRight: 1 }}>
+                sx={{ display: "inline-block", marginRight: 1 }}
+              >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label="Depart Date"
@@ -191,7 +199,8 @@ function Home() {
               </Box>
               <Box
                 className="departreturn"
-                sx={{ display: 'inline-block', marginRight: 1 }}>
+                sx={{ display: "inline-block", marginRight: 1 }}
+              >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label="Return Date"
@@ -210,7 +219,8 @@ function Home() {
                   disabled={counter <= 0}
                   onClick={() => {
                     setCounter(counter - 1);
-                  }}>
+                  }}
+                >
                   -
                 </Button>
                 {<Button disabled>{counter}</Button>}
@@ -218,7 +228,8 @@ function Home() {
                   disabled={counter >= 20}
                   onClick={() => {
                     setCounter(counter + 1);
-                  }}>
+                  }}
+                >
                   +
                 </Button>
               </ButtonGroup>
@@ -232,7 +243,7 @@ function Home() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ width: 180, height: 50, fontSize: 17, float: 'right' }}
+              sx={{ width: 180, height: 50, fontSize: 17, float: "right" }}
               onClick={(e) => {
                 e.preventDefault();
                 airportFrom &&
@@ -242,7 +253,8 @@ function Home() {
                   navigate(
                     `/search-result?oa=${airportFrom}&da=${airportTo}&dd=${depDate}&p=${counter}`
                   );
-              }}>
+              }}
+            >
               Search Flight
             </Button>
           </StyledEngineProvider>
@@ -278,7 +290,8 @@ function Home() {
             src="./img/simple.jpg"
             width={350}
             alt="Simple"
-            className="simple"></img>
+            className="simple"
+          ></img>
           <h2>Simple</h2>
           <br></br>
           <p>
