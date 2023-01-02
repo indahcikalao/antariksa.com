@@ -15,7 +15,7 @@ function SaveToken() {
       dispatch(setTokenGoogle(code));
       navigate('/');
     }
-  }, [code, navigate]);
+  }, [code, navigate, dispatch]);
 
   return <div></div>;
 }

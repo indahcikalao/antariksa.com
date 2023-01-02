@@ -158,7 +158,7 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <ToastContainer position="bottom-right" autoClose={3000} />
+      <ToastContainer position="bottom-left" autoClose={3000} />
       <Footer />
     </>
   );

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
-import { Grid, Box, Divider, Container } from '@mui/material';
+import { Box, Divider, Container } from '@mui/material';
 import './BuyerProfile.css';
 import { FaPencilAlt } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function BuyerProfile() {
