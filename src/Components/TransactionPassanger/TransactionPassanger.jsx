@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   TextField,
@@ -7,20 +7,20 @@ import {
   InputLabel,
   MenuItem,
   Select,
-} from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import moment from 'moment/moment';
-import plane9 from '../../img/plane9.jpg';
+} from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import moment from "moment/moment";
+import plane9 from "../../img/plane9.jpg";
 
 export default function TransactionPassanger({ i, data, setData }) {
-  const [idType, setIdType] = useState('');
-  const [expDate, setExpDate] = useState('');
+  const [idType, setIdType] = useState("");
+  const [expDate, setExpDate] = useState("");
   const [expDateVal, setExpDateVal] = useState(null);
-  const [name, setName] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [idNum, setIdNum] = useState('');
+  const [name, setName] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [idNum, setIdNum] = useState("");
 
   const passangers = data.passangers;
 
@@ -81,7 +81,8 @@ export default function TransactionPassanger({ i, data, setData }) {
               labelId="identitiy-type"
               value={idType}
               label="Identitiy Type"
-              onChange={(e) => setIdType(e.target.value)}>
+              onChange={(e) => setIdType(e.target.value)}
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
@@ -99,18 +100,20 @@ export default function TransactionPassanger({ i, data, setData }) {
             value={idNum}
             onChange={(e) => setIdNum(e.target.value)}
           />
-          <Box sx={idType === 'Passport' ? { mt: 2 } : { display: 'none' }}>
+          <Box sx={idType === "Passport" ? { mt: 2 } : { display: "none" }}>
             <LocalizationProvider
               dateAdapter={AdapterDayjs}
-              sx={{ borderRadius: '13px' }}>
+              sx={{ borderRadius: "13px" }}
+            >
               <MobileDatePicker
-                disabled={idType !== 'Passport'}
+                disablePast
+                disabled={idType !== "Passport"}
                 label="Identitiy Expire Date"
                 inputFormat="DD/MM/YYYY"
                 value={expDateVal}
                 onChange={(e) => {
                   setExpDateVal(e);
-                  setExpDate(moment(e.$d).format('DD-MM-YYYY'));
+                  setExpDate(moment(e.$d).format("DD-MM-YYYY"));
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />

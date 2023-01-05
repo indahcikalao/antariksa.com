@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Container } from "@mui/material";
+import { Grid, Container, Modal, Button, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getListRoute } from "../../redux/actions/listAction";
 import Paper from "@mui/material/Paper";
@@ -14,7 +14,6 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import { deleteListRoute } from "../../redux/actions/adminAction";
 import { useNavigate, Link } from "react-router-dom";
-import { Button, Box } from "@mui/material";
 
 const columns = [
   { id: "id", label: "ID", minWidth: 30 },
@@ -27,11 +26,27 @@ const columns = [
   { id: "price", label: "Price", minWidth: 100 },
 ];
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWidth: 600,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  textAlign: "center",
+};
+
 function AdminListRoute() {
   const { listRoute } = useSelector((state) => state.list);
   const [refetch, setRefetch] = useState(true);
+  const [id, setId] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -147,9 +162,8 @@ function AdminListRoute() {
                                 <td style={{ display: "flex", marginTop: 15 }}>
                                   <AiFillDelete
                                     onClick={() => {
-                                      const id = row.id;
-                                      dispatch(deleteListRoute(id));
-                                      setRefetch(true);
+                                      handleOpen();
+                                      setId(row.id);
                                     }}
                                     style={{
                                       cursor: "pointer",
@@ -191,6 +205,44 @@ function AdminListRoute() {
           </div>
         </div>
       </Container>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} style={{ borderRadius: "13px" }}>
+          <h2>Delete This Route?</h2>
+          <p>Are you really sure you want to delete this route?</p>
+          <div>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ m: 0.5 }}
+              onClick={handleClose}
+            >
+              No
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ m: 0.5 }}
+              onClick={() => {
+                dispatch(
+                  deleteListRoute(id, (status) => {
+                    if (status === 201) {
+                      setId(null);
+                      navigate("/admin-dashboard");
+                    }
+                  })
+                );
+                setRefetch(true);
+              }}
+            >
+              Yes
+            </Button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 }

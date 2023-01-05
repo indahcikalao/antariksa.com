@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const adminAddRoute = (data, callback) => async (dispatch, getState) => {
   const { token } = getState().auth;
@@ -15,7 +15,7 @@ export const adminAddRoute = (data, callback) => async (dispatch, getState) => {
     );
     // console.log(result.status);
     if (result.status === 201) {
-      toast.success('New Route Added!');
+      toast.success("New Route Added!");
       callback(result.status);
     }
   } catch (error) {
@@ -23,15 +23,23 @@ export const adminAddRoute = (data, callback) => async (dispatch, getState) => {
   }
 };
 
-export const deleteListRoute = (id) => async (dispatch, getState) => {
+export const deleteListRoute = (id, callback) => async (dispatch, getState) => {
   const { token } = getState().auth;
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/flight/${id}`, {
-      headers: {
-        Authorization: `${token}`
+    const result = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/flight/${id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
       }
-    });
+    );
+
+    if (result.status === 201) {
+      toast.success("Route Deleted!");
+      callback(result.status);
+    }
   } catch (error) {
-    throw error;
+    toast.error(error.response.data.message);
   }
 };
