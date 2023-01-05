@@ -140,7 +140,7 @@ function Home() {
                   paper: {
                     sx: {
                       width: "700px",
-                      height: "298px",
+                      height: "315px",
                       "@media (max-width: 1024px)": {
                         width: "300px",
                         height: "320px",
@@ -163,7 +163,7 @@ function Home() {
                   paper: {
                     sx: {
                       width: "700px",
-                      height: "298px",
+                      height: "315px",
                       "@media (max-width: 1024px)": {
                         width: "300px",
                         height: "320px",
@@ -260,13 +260,11 @@ function Home() {
       <div className="grid-container">
         <div className="grid-item">
           <img src="./img/fast.jpg" width={350} alt="Fast"></img>
-          <h2>Fast</h2>
+          <h2 style={{ paddingTop: 10 }}>Fast</h2>
           <br></br>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
-            aut ad amet maiores voluptates voluptas illum? Quidem expedita
-            explicabo, enim soluta rem, delectus sequi, aliquid quas ab libero
-            esse odit.
+            The good news is you can make transactions from anywhere quickly. Be
+            as fast as plane that will fly to Antariksa!
           </p>
         </div>
         <div className="grid-item">
@@ -276,10 +274,8 @@ function Home() {
           <h2>Cheap</h2>
           <br></br>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            facilis libero sit dolores quibusdam voluptas rerum, aliquam labore
-            nulla laborum illo iure veniam numquam ipsam magnam culpa
-            consequatur neque delectus.
+            The most important reason that our services are competitively priced
+            is because we choose to be affordable.
           </p>
         </div>
         <div className="grid-item">
@@ -289,13 +285,12 @@ function Home() {
             alt="Simple"
             className="simple"
           ></img>
-          <h2>Simple</h2>
+          <h2 style={{ paddingTop: 10 }}>Simple</h2>
           <br></br>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum sint
-            natus veritatis quasi eligendi illum quod ullam accusantium a!
-            Cupiditate adipisci optio in officia inventore sequi? Asperiores
-            sunt incidunt ratione.
+            We have developed an easy transaction for you, the customer. Your
+            convenience is our priority. <br />
+            “The greatest ideas are the simplest.”
           </p>
         </div>
       </div>
