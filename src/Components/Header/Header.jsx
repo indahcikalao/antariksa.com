@@ -90,8 +90,14 @@ function Header({ setToken }) {
                               <MenuItem
                                 sx={
                                   !item.isRead
-                                    ? { backgroundColor: "#DEF2FF" }
-                                    : { backgroundColor: "#F0F0F0" }
+                                    ? {
+                                        backgroundColor: "#DEF2FF",
+                                        color: "#003E67",
+                                      }
+                                    : {
+                                        backgroundColor: "#F0F0F0",
+                                        color: "#5A5A5A",
+                                      }
                                 }
                                 onClick={() => {
                                   popupState.close();
