@@ -1,33 +1,37 @@
-import React from 'react';
-import './index.scss';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material';
-import store from './redux/store';
-import { Provider } from 'react-redux';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import React from "react";
+import "./index.scss";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Poppins',
+    fontFamily: "Poppins",
     button: {
-      textTransform: 'none',
+      textTransform: "none",
     },
   },
   shape: {
-    borderRadius: '13px',
-    border: '2px',
+    borderRadius: "13px",
+    border: "2px",
   },
   palette: {
     primary: {
-      main: '#252C35',
-      dark: '#4d6c7a',
+      main: "#252C35",
+      dark: "#4d6c7a",
+    },
+    secondary: {
+      main: "#d32f2f",
+      dark: "#de7650",
     },
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

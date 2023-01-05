@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef } from "react";
 import {
   Container,
   Grid,
@@ -6,20 +6,20 @@ import {
   TextField,
   Button,
   Autocomplete,
-} from '@mui/material';
-import { BsPlusCircleFill } from 'react-icons/bs';
+} from "@mui/material";
+import { BsPlusCircleFill } from "react-icons/bs";
 import {
   MobileDatePicker,
   MobileTimePicker,
   LocalizationProvider,
-} from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useDispatch, useSelector } from 'react-redux';
-import { NumericFormat } from 'react-number-format';
-import { getListAirport } from '../../redux/actions/listairportAction';
-import { adminAddRoute } from '../../redux/actions/adminAction';
-import moment from 'moment/moment';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useDispatch, useSelector } from "react-redux";
+import { NumericFormat } from "react-number-format";
+import { getListAirport } from "../../redux/actions/listairportAction";
+import { adminAddRoute } from "../../redux/actions/adminAction";
+import moment from "moment/moment";
+import { useNavigate } from "react-router-dom";
 
 const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
   const { inputRef, onChange, ...other } = props;
@@ -38,7 +38,7 @@ const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
       }}
       thousandSeparator="."
       decimalSeparator=","
-      prefix={'IDR '}
+      prefix={"IDR "}
     />
   );
 });
@@ -79,7 +79,7 @@ export default function AdminNewRoutes() {
     dispatch(
       adminAddRoute(data, (status) => {
         if (status === 201) {
-          navigate('/admin-dashboard');
+          navigate("/admin-dashboard");
         }
       })
     );
@@ -88,7 +88,8 @@ export default function AdminNewRoutes() {
   return (
     <div
       className="bg"
-      style={{ backgroundImage: `url('./img/bg-gradient.png')` }}>
+      style={{ backgroundImage: `url('./img/bg-gradient.png')` }}
+    >
       <Container sx={{ py: 15 }} maxWidth="md">
         <div className="box-auth">
           <Grid container justifyContent="center">
@@ -102,7 +103,7 @@ export default function AdminNewRoutes() {
               }}
             />
             <Grid item md={8} xs={12} sx={{ p: 3 }}>
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: "center" }}>
                 <h1>Add New Routes</h1>
                 <p>Hola Admin! Adding new routes?</p>
               </div>
@@ -112,16 +113,16 @@ export default function AdminNewRoutes() {
                     <Autocomplete
                       options={listAirport}
                       getOptionLabel={(list) =>
-                        list.name + ' (' + list.code + ') - ' + list.region
+                        list.name + " (" + list.code + ") - " + list.region
                       }
                       componentsProps={{
                         paper: {
                           sx: {
-                            width: '700px',
-                            height: '298px',
-                            '@media (max-width: 1024px)': {
-                              width: '300px',
-                              height: '320px',
+                            width: "700px",
+                            height: "298px",
+                            "@media (max-width: 1024px)": {
+                              width: "300px",
+                              height: "320px",
                             },
                           },
                         },
@@ -139,16 +140,16 @@ export default function AdminNewRoutes() {
                     <Autocomplete
                       options={listAirport}
                       getOptionLabel={(list) =>
-                        list.name + ' (' + list.code + ') - ' + list.region
+                        list.name + " (" + list.code + ") - " + list.region
                       }
                       componentsProps={{
                         paper: {
                           sx: {
-                            width: '700px',
-                            height: '298px',
-                            '@media (max-width: 1024px)': {
-                              width: '300px',
-                              height: '320px',
+                            width: "700px",
+                            height: "298px",
+                            "@media (max-width: 1024px)": {
+                              width: "300px",
+                              height: "320px",
                             },
                           },
                         },
@@ -167,12 +168,13 @@ export default function AdminNewRoutes() {
                     <Box>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <MobileDatePicker
+                          disablePast
                           label="Departure Date"
                           inputFormat="MM/DD/YYYY"
                           value={depDateVal}
                           onChange={(e) => {
                             setDepDateVal(e);
-                            setDepDate(moment(e.$d).format('DD-MM-YYYY'));
+                            setDepDate(moment(e.$d).format("DD-MM-YYYY"));
                           }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
@@ -191,7 +193,7 @@ export default function AdminNewRoutes() {
                           value={depTimeVal}
                           onChange={(e) => {
                             setDepTimeVal(e);
-                            setDepTime(moment(e.$d).format('hh:mm'));
+                            setDepTime(moment(e.$d).format("hh:mm"));
                           }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
@@ -210,7 +212,7 @@ export default function AdminNewRoutes() {
                           value={arrTimeVal}
                           onChange={(e) => {
                             setArrTimeVal(e);
-                            setArrTime(moment(e.$d).format('hh:mm'));
+                            setArrTime(moment(e.$d).format("hh:mm"));
                           }}
                           renderInput={(params) => (
                             <TextField {...params} fullWidth />
@@ -259,9 +261,10 @@ export default function AdminNewRoutes() {
                   }
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2, py: 1 }}>
+                  sx={{ mt: 3, mb: 2, py: 1 }}
+                >
                   <BsPlusCircleFill
-                    style={{ marginRight: '10px', fontSize: '18px' }}
+                    style={{ marginRight: "10px", fontSize: "18px" }}
                   />
                   Submit New Routes
                 </Button>

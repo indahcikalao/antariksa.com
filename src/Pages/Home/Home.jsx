@@ -186,6 +186,7 @@ function Home() {
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
+                    disablePast
                     label="Depart Date"
                     inputFormat="MM/DD/YYYY"
                     value={value}
@@ -200,6 +201,7 @@ function Home() {
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
+                    disablePast
                     label="Return Date"
                     inputFormat="MM/DD/YYYY"
                     value={value1}
