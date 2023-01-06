@@ -171,7 +171,9 @@ export default function Register() {
                       label="Phone Number"
                       autoFocus
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) =>
+                        setPhone(e.target.value.substring(0, 13))
+                      }
                     />
                     <FormControl sx={{ width: 200 }} margin="dense">
                       <InputLabel id="gender">Gender</InputLabel>
