@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   TextField,
@@ -14,20 +14,20 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
-} from '@mui/material';
-import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/actions/authActions';
-import LogSuccess from '../../Components/LogSuccess/LogSuccess';
-import '../Login/Login.scss';
-import GoogleLogin from '../../Components/GoogleLogin/GoogleLogin';
+} from "@mui/material";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/actions/authActions";
+import LogSuccess from "../../Components/LogSuccess/LogSuccess";
+import "../Login/Login.scss";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [gender, setGender] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -56,7 +56,8 @@ export default function Register() {
   return (
     <div
       className="bg"
-      style={{ backgroundImage: `url('./img/bg-gradient.png')` }}>
+      style={{ backgroundImage: `url('./img/bg-gradient.png')` }}
+    >
       <Container sx={{ py: 20 }} maxWidth="md">
         <div className="box-auth">
           {token ? (
@@ -88,11 +89,12 @@ export default function Register() {
               <Grid item md={6} sm={12}>
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                     p: 5,
-                  }}>
+                  }}
+                >
                   <Typography component="h1" variant="h4">
                     Hello There!
                   </Typography>
@@ -103,7 +105,8 @@ export default function Register() {
                     component="form"
                     noValidate
                     onSubmit={handleSubmit}
-                    sx={{ mt: 3 }}>
+                    sx={{ mt: 3 }}
+                  >
                     <TextField
                       margin="dense"
                       autoComplete="given-name"
@@ -135,7 +138,7 @@ export default function Register() {
                       fullWidth
                       name="password"
                       label="Password"
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       value={password}
                       InputProps={{
@@ -143,7 +146,8 @@ export default function Register() {
                           <InputAdornment position="end">
                             <IconButton
                               aria-label="toggle password visibility"
-                              onClick={() => setShowPassword(!showPassword)}>
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
                               {!showPassword ? (
                                 <BsEyeFill />
                               ) : (
@@ -163,6 +167,7 @@ export default function Register() {
                       name="tel"
                       required
                       fullWidth
+                      type="number"
                       label="Phone Number"
                       autoFocus
                       value={phone}
@@ -174,7 +179,8 @@ export default function Register() {
                         labelId="gender"
                         value={gender}
                         label="Gender"
-                        onChange={(e) => setGender(e.target.value)}>
+                        onChange={(e) => setGender(e.target.value)}
+                      >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
@@ -189,7 +195,8 @@ export default function Register() {
                       type="submit"
                       fullWidth
                       variant="contained"
-                      sx={{ mt: 3, mb: 2 }}>
+                      sx={{ mt: 3, mb: 2 }}
+                    >
                       Register
                     </Button>
 
