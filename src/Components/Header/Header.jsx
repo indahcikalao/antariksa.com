@@ -76,9 +76,7 @@ function Header({ setToken }) {
                   <PopupState variant="popover">
                     {(popupState) => (
                       <React.Fragment>
-                        {/* {notif.map((itm, a) => ( */}
                         <BsBellFill
-                          // className={!itm.isRead ? "adanotif" : "notif"}
                           className="notif"
                           {...bindTrigger(popupState)}
                         />
