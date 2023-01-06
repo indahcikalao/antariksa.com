@@ -60,6 +60,7 @@ function FormEdit() {
           <form className="px-3 py-4">
             <TextField
               fullWidth
+              type="text"
               label="Full Name"
               id="fullWidth"
               margin="normal"
@@ -69,11 +70,12 @@ function FormEdit() {
 
             <TextField
               fullWidth
+              type="number"
               label="Phone Number"
               id="fullWidth"
               margin="normal"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.substring(0, 13))}
             />
 
             <FormControl sx={{ width: 200 }} margin="dense">

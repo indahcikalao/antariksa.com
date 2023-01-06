@@ -99,6 +99,13 @@
   cursor: pointer;
 }
 
+.adanotif {
+  color: red;
+  margin-top: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
 .menu-icons {
   display: none;
 }
